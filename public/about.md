@@ -4,7 +4,7 @@ Today we are introducing `Chai`, an ERC20 token that lets you earn interest on D
 
 Chai lives on the Ethereum mainnet at address `0x06AF07097C9Eeb7fD685c692751D5C66dB49c215`.
 
-![](https://i.imgur.com/DbTXS3b.gif)
+![](favicon.gif)
 _Somethings brewing..._
 
 ## What is Chai?
