@@ -53,6 +53,7 @@ const initialState = {
     potObject: new web3.eth.Contract(potABI, config.MCD_POT),
     daiObject: new web3.eth.Contract(daiABI, config.MCD_DAI),
     chaiObject: new web3.eth.Contract(chaiABI, config.CHAI),
+    deurObject: new web3.eth.Contract(chaiABI, config.DEUR),
     walletAddress: '',
     walletConnecting: false,
     walletType: '',
@@ -104,7 +105,7 @@ class App extends React.Component {
                           <TransferChaiContainer />
                         </Grid>
                         <Grid item xs={12} className={classes.footer}>
-                          Interacting with the dEuro contract at: <a target="_blank" href={"https://etherscan.io/token/" + config.CHAI} rel="noopener noreferrer">{config.CHAI}</a><br />
+                          Interacting with the dEuro contract at: <a target="_blank" href={"https://kovan.etherscan.io/token/" + config.DEUR} rel="noopener noreferrer">{config.DEUR}</a><br />
                           <TotalSupplyContainer />
                           <a href="/about.html">Learn more about </a>
                         </Grid>

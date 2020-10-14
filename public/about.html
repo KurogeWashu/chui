@@ -35,32 +35,32 @@ footer {
 
     <meta
       name="description"
-      content="Documentation for chai"
+      content="Documentation for DEUR"
       />
-    <title>chai.money/about</title>
+    <title>DEUR.money/about</title>
   </head>
   <body>
-    <h1 id="chai-a-simple-erc20-wrapper-over-the-dai-savings-rate">Chai – A simple ERC20 wrapper over the Dai Savings Rate</h1>
-<p>Today we are introducing <code>Chai</code>, an ERC20 token that lets you earn interest on Dai without requiring it to be locked in the Dai Savings Rate. It can be transferred freely and is always redeemable for an ever growing amount of Dai. Interact with the Chai contract at <a href="https://digitaleuro.netlify.com">digitaleuro</a>.</p>
+    <h1 id="deur-a-simple-erc20-wrapper-over-the-dai-savings-rate">DEUR – A simple ERC20 wrapper over the Dai Savings Rate</h1>
+<p>Today we are introducing <code>DEUR</code>, an ERC20 token that lets you earn interest on Dai without requiring it to be locked in the Dai Savings Rate. It can be transferred freely and is always redeemable for an ever growing amount of Dai. Interact with the DEUR contract at <a href="https://digitaleuro.netlify.com">digitaleuro</a>.</p>
 <p>DEUR lives on the Ethereum Kovan at address <code>0x36d23b7237fbcF128cDB9091960405216793c5B7</code>.</p>
 <p class="logo">
 <img src="favicon.gif" alt="" /><br />
-Something's brewing...</p>
-<h2 id="what-is-chai-">What is Chai?</h2>
-<p>With the launch of multi-collateral Dai, Dai holders can earn risk-free interest on their coins using the Dai Savings Contract, also known as the <code>Pot</code>. The interest is funded out of the stability fees paid by CDP users, and is 2% per year at the time of writing. Even though Dai deposited in the savings contract remains instantly redeemable, interest accruing Dai cannot be directly transferred, or used in other dapps. Chai solves this by essentially &quot;unlocking&quot; your Dai savings balance, making it transferable, fungible, and ready for further DeFi integrations.</p>
-<p>When you convert your Dai to Chai, you receive a corresponding balance in the Chai contract. While your Chai balance remains constant, its corresponding Dai value grows with the Dai Savings Rate. You can think of it as Dai <em>brewing</em> in the Chai contract. At any point in time you can redeem your Dai along with additional interest, or continue to use the Chai token directly.</p>
+Get ready for dank, the euro de-banked...</p>
+<h2 id="what-is-deur-">What is DEUR?</h2>
+<p>With the launch of multi-collateral Dai, Dai holders can earn risk-free interest on their coins using the Dai Savings Contract, also known as the <code>Pot</code>. The interest is funded out of the stability fees paid by CDP users, and is 2% per year at the time of writing. Even though Dai deposited in the savings contract remains instantly redeemable, interest accruing Dai cannot be directly transferred, or used in other dapps. DEUR solves this by essentially &quot;unlocking&quot; your Dai savings balance, making it transferable, fungible, and ready for further DeFi integrations.</p>
+<p>When you convert your Dai to DEUR, you receive a corresponding balance in the DEUR contract. While your DEUR balance remains constant, its corresponding Dai value grows with the Dai Savings Rate. You can think of it as Dai <em>brewing</em> in the DEUR contract. At any point in time you can redeem your Dai along with additional interest, or continue to use the DEUR token directly.</p>
 <h2 id="what-does-it-do-">What does it do?</h2>
-<p>Besides the standard ERC20 functions for transferring Chai, we want to highlight some additional features of the contract. For more information about the <code>chai.sol</code> contract, check out the <a href="https://github.com/ninonomad/DigitalEuro">README</a>.</p>
+<p>Besides the standard ERC20 functions for transferring DEUR, we want to highlight some additional features of the contract. For more information about the <code>DEUR.sol</code> contract, check out the <a href="https://github.com/ninonomad/DigitalEuro">README</a>.</p>
 <h3 id="dai-deposits-and-withdrawals">Dai deposits and withdrawals</h3>
-<p>A Dai user can convert their Dai into Chai at any point, by calling <code>join</code>. Likewise, they can convert their Chai into Dai at any point, by calling <code>exit</code>.</p>
+<p>A Dai user can convert their Dai into DEUR at any point, by calling <code>join</code>. Likewise, they can convert their DEUR into Dai at any point, by calling <code>exit</code>.</p>
 <h3 id="dai-denominated-transfers-and-withdrawals">Dai-denominated transfers and withdrawals</h3>
-<p>With the amount of Dai redeemable for one Chai constantly growing, the contract offers a few helper functions that operate on Chai balances in terms of their underlying Dai value.
-For example, with the method <code>move(address sender, address receiver, uint value)</code>, the <code>sender</code> will transfer just enough Chai to ensure that the <code>receiver</code> gets an amount of Chai worth <code>value</code> Dai (the exact amount of Chai transferred is determined when the transaction is included in a block). </p>
+<p>With the amount of Dai redeemable for one DEUR constantly growing, the contract offers a few helper functions that operate on DEUR balances in terms of their underlying Dai value.
+For example, with the method <code>move(address sender, address receiver, uint value)</code>, the <code>sender</code> will transfer just enough DEUR to ensure that the <code>receiver</code> gets an amount of DEUR worth <code>value</code> Dai (the exact amount of DEUR transferred is determined when the transaction is included in a block). </p>
 <p>Similarly, the <code>draw</code> function lets users withdraw Dai by specify the amount of Dai they wish to redeem.</p>
 <h3 id="support-for-gasless-token-interactions">Support for gasless token interactions</h3>
-<p>Paying gas for transactions that primarily deal with tokens creates unnecessary friction and positions tokens as second-class citizens in the Ethereum ecosystem. While there are many ways of dealing with this problem, both the Chai and the Dai contract provide a particularly simple and general solution by allowing approvals to be done with a signed message (known as a <code>permit</code>) in the ERC20 directly.</p>
+<p>Paying gas for transactions that primarily deal with tokens creates unnecessary friction and positions tokens as second-class citizens in the Ethereum ecosystem. While there are many ways of dealing with this problem, both the DEUR and the Dai contract provide a particularly simple and general solution by allowing approvals to be done with a signed message (known as a <code>permit</code>) in the ERC20 directly.</p>
 <p>While designing the <code>dai.sol</code> token contract, we experimented with various ways of performing token operations using signatures, until we realized that the only operation that had to be added to the contract directly was <code>permit</code>. </p>
-<p>By allowing users to give allowance to arbitrary addresses by signing a <code>permit</code>, we allow abstract gasless operations without committing to a particular way of doing transfer-by-signature, trade-by-signature, or any other token interaction. We achieve full generality by just adding one function to the ERC20 standard. In fact, one of the reasons we felt compelled to write the <code>Chai</code> contract was because we wanted Savings Dai deposits to have this feature. </p>
+<p>By allowing users to give allowance to arbitrary addresses by signing a <code>permit</code>, we allow abstract gasless operations without committing to a particular way of doing transfer-by-signature, trade-by-signature, or any other token interaction. We achieve full generality by just adding one function to the ERC20 standard. In fact, one of the reasons we felt compelled to write the <code>DEUR</code> contract was because we wanted Savings Dai deposits to have this feature. </p>
 <p>Note that the interface at <a href="https://digitaleuro.netlify.com">digitaleuro</a> does not yet support gasless transfers, but we are working on a something that demonstrates the full power of the <code>permit</code> pattern. Stay tuned for updates!</p>
 <h2 id="disclaimer">Disclaimer</h2>
 <p>Although we believe it to be straightforward enough to not contain any surprises, remember that on the blockchain, you are responsible for your own actions.</p>
