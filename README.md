@@ -1,4 +1,4 @@
-# A UI for your Chai
+# DANK UI for your digital euro
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

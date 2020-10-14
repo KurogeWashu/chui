@@ -104,17 +104,17 @@ class App extends React.Component {
                           <TransferChaiContainer />
                         </Grid>
                         <Grid item xs={12} className={classes.footer}>
-                          Interacting with the Chai contract at: <a target="_blank" href={"https://etherscan.io/token/" + config.CHAI} rel="noopener noreferrer">{config.CHAI}</a><br />
+                          Interacting with the dEuro contract at: <a target="_blank" href={"https://etherscan.io/token/" + config.CHAI} rel="noopener noreferrer">{config.CHAI}</a><br />
                           <TotalSupplyContainer />
-                          <a href="/about.html">Learn more about Chai</a>
+                          <a href="/about.html">Learn more about </a>
                         </Grid>
                         <Grid item xs={12} className={classes.footer}>
-                         chai.money by&nbsp;
-                              <a target="_blank" href="https://twitter.com/martinlundfall" rel="noopener noreferrer">Martin Lundfall</a>,&nbsp;
-                              <a target="_blank" href="https://lucasvo.com" rel="noopener noreferrer">Lucas Vogelsang</a>,&nbsp;
-                              <a target="_blank" href="https://lev.liv.nev.org.uk" rel="noopener noreferrer">Lev Livnev</a>. <br />
-                         Pixel art by <a target="_blank" href="https://twitter.com/abbey_titcomb" rel="noopener noreferrer">Abbey Titcomb</a>
-                         &nbsp; UI at <a href="https://github.com/lucasvo/chui">github.com/lucasvo/chui</a>
+                         digital euro by&nbsp;
+                              <a target="_blank" href="https://github.com/ninonomad" rel="noopener noreferrer">Smiley</a>,&nbsp;
+                              <a target="_blank" href="https://github.com/cereum" rel="noopener noreferrer">back</a>,&nbsp;
+                              <a target="_blank" href="https://github.com/kurogewashu" rel="noopener noreferrer">rack</a>,&nbsp;
+                              <a target="_blank" href="https://github.com/einstein816" rel="noopener noreferrer">front</a>,&nbsp;
+                              <a target="_blank" href="https://github.com/iazigit" rel="noopener noreferrer">iazid</a>. <br />
                         </Grid>
                     </Grid>
                 </Container>
