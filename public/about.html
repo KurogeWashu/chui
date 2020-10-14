@@ -42,7 +42,7 @@ footer {
   <body>
     <h1 id="chai-a-simple-erc20-wrapper-over-the-dai-savings-rate">Chai – A simple ERC20 wrapper over the Dai Savings Rate</h1>
 <p>Today we are introducing <code>Chai</code>, an ERC20 token that lets you earn interest on Dai without requiring it to be locked in the Dai Savings Rate. It can be transferred freely and is always redeemable for an ever growing amount of Dai. Interact with the Chai contract at <a href="https://digitaleuro.netlify.com">digitaleuro</a>.</p>
-<p>Chai lives on the Ethereum mainnet at address <code>0x06AF07097C9Eeb7fD685c692751D5C66dB49c215</code>.</p>
+<p>DEUR lives on the Ethereum Kovan at address <code>0x36d23b7237fbcF128cDB9091960405216793c5B7</code>.</p>
 <p class="logo">
 <img src="favicon.gif" alt="" /><br />
 Something's brewing...</p>
@@ -50,7 +50,7 @@ Something's brewing...</p>
 <p>With the launch of multi-collateral Dai, Dai holders can earn risk-free interest on their coins using the Dai Savings Contract, also known as the <code>Pot</code>. The interest is funded out of the stability fees paid by CDP users, and is 2% per year at the time of writing. Even though Dai deposited in the savings contract remains instantly redeemable, interest accruing Dai cannot be directly transferred, or used in other dapps. Chai solves this by essentially &quot;unlocking&quot; your Dai savings balance, making it transferable, fungible, and ready for further DeFi integrations.</p>
 <p>When you convert your Dai to Chai, you receive a corresponding balance in the Chai contract. While your Chai balance remains constant, its corresponding Dai value grows with the Dai Savings Rate. You can think of it as Dai <em>brewing</em> in the Chai contract. At any point in time you can redeem your Dai along with additional interest, or continue to use the Chai token directly.</p>
 <h2 id="what-does-it-do-">What does it do?</h2>
-<p>Besides the standard ERC20 functions for transferring Chai, we want to highlight some additional features of the contract. For more information about the <code>chai.sol</code> contract, check out the <a href="https://github.com/dapphub/chai">README</a>.</p>
+<p>Besides the standard ERC20 functions for transferring Chai, we want to highlight some additional features of the contract. For more information about the <code>chai.sol</code> contract, check out the <a href="https://github.com/ninonomad/DigitalEuro">README</a>.</p>
 <h3 id="dai-deposits-and-withdrawals">Dai deposits and withdrawals</h3>
 <p>A Dai user can convert their Dai into Chai at any point, by calling <code>join</code>. Likewise, they can convert their Chai into Dai at any point, by calling <code>exit</code>.</p>
 <h3 id="dai-denominated-transfers-and-withdrawals">Dai-denominated transfers and withdrawals</h3>

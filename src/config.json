@@ -1,7 +1,8 @@
 {
-  "MCD_DAI": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
-  "MCD_POT": "0x197E90f9FAD81970bA7976f33CbD77088E5D7cf7",
-  "CHAI": "0x06AF07097C9Eeb7fD685c692751D5C66dB49c215",
-  "defaultWeb3Provider": "https://mainnet.infura.io/v3/8facbab2998b411ea0cef95ae90b66f1",
-  "network": 1
+  "MCD_DAI": "0x4F96Fe3b7A6Cf9725f59d353F723c1bDb64CA6Aa",
+  "MCD_POT": "0xEA190DBDC7adF265260ec4dA6e9675Fd4f5A78bb",
+  "CHAI": "0xb641957b6c29310926110848db2d464c8c3c3f38",
+  "DEUR": "0x36d23b7237fbcF128cDB9091960405216793c5B7",
+  "defaultWeb3Provider": "https://kovan.infura.io/v3/8facbab2998b411ea0cef95ae90b66f1",
+  "network": 42
 }

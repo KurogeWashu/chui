@@ -71,12 +71,12 @@ class NavContainer extends React.Component {
       return <Grid item sm={12}>
               <Dialog
                  open={
-                   network !== config.network}
+                   network !== config.network }
               >
               <DialogTitle id="alert-dialog-title">{"Wrong network"}</DialogTitle>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                   <p>Switch to mainnet to interact with this app</p>
+                   <p>Switch to the right network to interact with this app</p>
                 </DialogContentText>
               </DialogContent>
             </Dialog>
@@ -96,9 +96,9 @@ class NavContainer extends React.Component {
           <Grid item sm={12} md={8}>
             <img src={logostill} className={classes.logo} />
             <div className={classes.title}>
-              <span className={classes.title}>chai.money</span>
+              <span className={classes.title}>Digital Euro</span>
               <span className={classes.subtitle}>
-                 Accrue interest on your Dai by turning it into Chai.
+                 Stay in Euro AND in crypto.
               </span>
             </div>
           </Grid>
