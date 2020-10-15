@@ -153,8 +153,8 @@ export const getDeurTotalSupply = async function() {
 export const toDeur = function(daiAmount) {
   const daiDecimal = daiAmount ? new WadDecimal(daiAmount).div('1e18') : new WadDecimal(0)
   const { store } = this.props
-  if (!store.get('deur')) return
-  const deurDecimal = new WadDecimal(store.get('deur'))
+  if (!store.get('der')) return
+  const deurDecimal = new WadDecimal(store.get('der'))
   return toFixed(daiDecimal.div(deurDecimal),5)
 }
 
