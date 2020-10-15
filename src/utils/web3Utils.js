@@ -33,10 +33,14 @@ function toFixed(num, precision) {
 
 export const getPotDsr = async function() {
   const { store } = this.props
-  const pot = store.get('potObject')
-  if (!pot) return
+  // const pot = store.get('potObject')
+  // if (!pot) return
 
-  const dsrRaw = await pot.methods.dsr().call()
+  const mgr = store.get('mgrObject')
+  if (!mgr) return
+  
+  // const dsrRaw = await pot.methods.dsr().call()
+  const dsrRaw = await mgr.methods.getdEur_DAI().call()
   if (dsrRaw === store.get('dsrRaw')) return
   store.set('dsrRaw', dsrRaw)
   let dsr = toFixed(new WadDecimal(dsrRaw).div('1e27').pow(secondsInYear).minus(1).mul(100), 2)
@@ -59,10 +63,11 @@ export const getPotDer = async function() {
   const mgr = store.get('mgrObject')
   if (!mgr) return
   // const derRaw = await mgr.methods.getdEur_DAI().call()
-  const derRaw = 0.85*10**18
+  const derRaw = 116974257
   if (derRaw === store.get('derRaw')) return
   store.set('derRaw', derRaw)
-  let der = toFixed(new WadDecimal(derRaw).div('1e27'), 5)
+  // let der = toFixed(new WadDecimal(derRaw).div('1e27'), 5)
+  let der = toFixed(new WadDecimal(derRaw).div('1e27').pow(secondsInYear).minus(1).mul(100), 2)
   store.set('der', der.toString())
 }
 

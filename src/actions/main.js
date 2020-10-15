@@ -6,7 +6,7 @@ export const exit = async function() {
     const deur = store.get('deurObject')
     const exitAmount = store.get('exitAmount').mul(10**18)
     const walletAddress = store.get('walletAddress')
-    return deur.methods.exit(walletAddress, exitAmount.toFixed()).send({from: walletAddress})
+    return deur.methods.burn(walletAddress, exitAmount.toFixed()).send({from: walletAddress})
 }
 
 export const join = async function() {
