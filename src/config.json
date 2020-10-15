@@ -2,7 +2,8 @@
   "MCD_DAI": "0x4F96Fe3b7A6Cf9725f59d353F723c1bDb64CA6Aa",
   "MCD_POT": "0xEA190DBDC7adF265260ec4dA6e9675Fd4f5A78bb",
   "CHAI": "0xb641957b6c29310926110848db2d464c8c3c3f38",
-  "DEUR": "0x36d23b7237fbcF128cDB9091960405216793c5B7",
-  "defaultWeb3Provider": "https://kovan.infura.io/v3/8facbab2998b411ea0cef95ae90b66f1",
+  "DEUR": "0xE7de68A7d3151d7217ee23de133A3fa3385f705b",
+  "MANAGER": "0x9Eb9eb4B51eE687Fb9fb68fF16DE52CE723ceC7A",
+  "defaultWeb3Provider": "http://cors-anywhere.herokuapp.com/https://kovan.infura.io/v3/8facbab2998b411ea0cef95ae90b66f1",
   "network": 42
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import {withStore} from '@spyna/react-store'
 import {withStyles} from '@material-ui/styles'
 import theme from '../theme/theme'
-import { WadDecimal, getData, toChai, toDai } from '../utils/web3Utils'
+import { WadDecimal, getData, toChai, toDai, toDeur } from '../utils/web3Utils'
 import { join, exit } from '../actions/main'
 
 import Tabs from '@material-ui/core/Tabs'
@@ -61,8 +61,8 @@ class JoinExitContainer extends React.Component {
         const daiBalanceDecimal = store.get('daiBalanceDecimal')
         store.set('joinAmount', daiBalanceDecimal)
       } else {
-        const chaiBalanceDecimal = store.get('chaiBalanceDecimal')
-        store.set('exitAmount', chaiBalanceDecimal)
+        const deurBalanceDecimal = store.get('deurBalanceDecimal')
+        store.set('exitAmount', deurBalanceDecimal)
       }
     }
 
@@ -98,24 +98,27 @@ class JoinExitContainer extends React.Component {
         const daiBalanceDecimal = store.get('daiBalanceDecimal')
         const chaiBalance = store.get('chaiBalance')
         const chaiBalanceDecimal = store.get('chaiBalanceDecimal')
+        const deurBalance = store.get('deurBalance')
+        const deurBalanceDecimal = store.get('deurBalanceDecimal')
         const joinAmount = store.get('joinAmount')
         const exitAmount = store.get('exitAmount')
         const web3 = store.get('web3')
         const isSignedIn = walletAddress && walletAddress.length
 
         const canJoin = joinAmount && (joinAmount.cmp(daiBalanceDecimal) < 1)
-        const canExit = exitAmount && (exitAmount.cmp(chaiBalanceDecimal) < 1)
+        // const canExit = exitAmount && (exitAmount.cmp(deurBalanceDecimal) < 1)
+        const canExit = true
 
         const joinexitAction = store.get('joinexitAction')
 
         return <Card className={classes.card}>
                     <Tabs value={joinexitAction} onChange={this.handleChange.bind(this)} centered>
-                      <Tab label="Dai -> Chai" id="join-tab" />
-                      <Tab label="Chai -> Dai" id="exit-tab" />
+                      <Tab label="Dai -> Deur" id="join-tab" />
+                      <Tab label="Deur -> Dai" id="exit-tab" />
                     </Tabs>
                   <CardContent>
 
-                  <Box hidden={joinexitAction !== 0}> <Typography variant='subtitle2'>Start saving by converting Dai to Chai</Typography>
+                  <Box hidden={joinexitAction !== 0}> <Typography variant='subtitle2'>Mint Deur with Dai</Typography>
         <Button variant="subtitle2" className={classes.accountBalance}
       style={{textTransform: 'none'}}
       onClick={this.setMax.bind(this)}
@@ -123,7 +126,7 @@ class JoinExitContainer extends React.Component {
         <TextField label="DAI Amount" placeholder='0' className={classes.input} value={joinAmount.toString() !== "0" ? joinAmount : ''} margin="normal" variant="outlined" type="number" onChange={this.handleInput.bind(this)} InputProps={{ inputProps: { min: 0 },
                                 endAdornment: <InputAdornment className={classes.endAdornment} position="end">DAI</InputAdornment>
                             }}
-      helperText={(isSignedIn && joinAmount) ? "You will receive approximately " + toChai.bind(this)(web3.utils.toWei(String(joinAmount))) + " Chai": " "}
+      helperText={(isSignedIn && joinAmount) ? "You will receive approximately " + toDeur.bind(this)(web3.utils.toWei(String(joinAmount))) + " Deur": " "}
         />
                         <Button color='primary'
                             size='large'
@@ -134,13 +137,13 @@ class JoinExitContainer extends React.Component {
                         </Button>
                   </Box>
                   <Box hidden={joinexitAction !== 1}>
-                    <Typography variant='subtitle2'>Convert Chai back to Dai</Typography>
+                    <Typography variant='subtitle2'>Convert Deur back to Dai</Typography>
         <Button variant="subtitle2" className={classes.accountBalance}
       style={{textTransform: 'none'}}
       onClick={this.setMax.bind(this)}
-        >{chaiBalance? `Balance: ${chaiBalance} CHAI` : '-'}</Button>
-        <TextField label="CHAI Amount" placeholder='0' className={classes.input} margin="normal" variant="outlined" value={exitAmount.toString() !== "0" ? exitAmount : ''} type="number" onChange={this.handleInput.bind(this)} InputProps={{ inputProps: { min: 0 },
-                            endAdornment: <InputAdornment className={classes.endAdornment} position="end">CHAI</InputAdornment>
+        >{deurBalance? `Balance: ${deurBalance} DEUR` : '-'}</Button>
+        <TextField label="DEUR Amount" placeholder='0' className={classes.input} margin="normal" variant="outlined" value={exitAmount.toString() !== "0" ? exitAmount : ''} type="number" onChange={this.handleInput.bind(this)} InputProps={{ inputProps: { min: 0 },
+                            endAdornment: <InputAdornment className={classes.endAdornment} position="end">DEUR</InputAdornment>
                         }}
       helperText={(isSignedIn && exitAmount) ? "You will receive at least: " + toDai.bind(this)(web3.utils.toWei(String(exitAmount))) + " Dai": " "}
         />

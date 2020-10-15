@@ -6,12 +6,14 @@ import config from './config.json'
 import daiABI from './abi/Dai.abi.json'
 import potABI from './abi/Pot.abi.json'
 import chaiABI from './abi/Chai.abi.json'
+import deurABI from './abi/Deur.json'
 
 import NavContainer from './containers/Nav'
 import JoinExitContainer from './containers/JoinExit'
 import ChaiBalanceContainer from './containers/ChaiBalance'
+import DeurBalanceContainer from './containers/DeurBalance'
 import TotalSupplyContainer from './containers/TotalSupply'
-import TransferChaiContainer from './containers/TransferChai'
+import TransferDeurContainer from './containers/TransferDeur'
 import { setupContracts, getData, WadDecimal } from './utils/web3Utils'
 
 import theme from './theme/theme'
@@ -53,7 +55,7 @@ const initialState = {
     potObject: new web3.eth.Contract(potABI, config.MCD_POT),
     daiObject: new web3.eth.Contract(daiABI, config.MCD_DAI),
     chaiObject: new web3.eth.Contract(chaiABI, config.CHAI),
-    deurObject: new web3.eth.Contract(chaiABI, config.DEUR),
+    deurObject: new web3.eth.Contract(deurABI, config.DEUR),
     walletAddress: '',
     walletConnecting: false,
     walletType: '',
@@ -98,11 +100,11 @@ class App extends React.Component {
                             <JoinExitContainer />
                         </Grid>
                         <Grid item xs={12} md={6}>
-                            <ChaiBalanceContainer />
+                            <DeurBalanceContainer />
 
                         </Grid>
                         <Grid item xs={12}>
-                          <TransferChaiContainer />
+                          <TransferDeurContainer />
                         </Grid>
                         <Grid item xs={12} className={classes.footer}>
                           Interacting with the dEuro contract at: <a target="_blank" href={"https://kovan.etherscan.io/token/" + config.DEUR} rel="noopener noreferrer">{config.DEUR}</a><br />
