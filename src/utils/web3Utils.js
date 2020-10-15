@@ -67,7 +67,7 @@ export const getPotDer = async function() {
   if (derRaw === store.get('derRaw')) return
   store.set('derRaw', derRaw)
   // let der = toFixed(new WadDecimal(derRaw).div('1e27'), 5)
-  let der = toFixed(new WadDecimal(derRaw).div('1e27').pow(secondsInYear).minus(1).mul(100), 2)
+  let der = toFixed(new WadDecimal(derRaw).div('1e8'), 5)
   store.set('der', der.toString())
 }
 
