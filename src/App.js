@@ -12,6 +12,7 @@ import NavContainer from './containers/Nav'
 import JoinExitContainer from './containers/JoinExit'
 import ChaiBalanceContainer from './containers/ChaiBalance'
 import DeurBalanceContainer from './containers/DeurBalance'
+import DeurMintContainer from './containers/DeurMint'
 import TotalSupplyContainer from './containers/TotalSupply'
 import TransferDeurContainer from './containers/TransferDeur'
 import { setupContracts, getData, WadDecimal } from './utils/web3Utils'
@@ -66,11 +67,16 @@ const initialState = {
     chaiBalance: '',
     chaiBalanceRaw: '',
     chaiBalanceDecimal: new WadDecimal(0),
+    deurBalance: '',
+    deurBalanceRaw: '',
+    deurBalanceDecimal: new WadDecimal(0),
     dsrRaw: '',
     dsr: '',
+    der: '',
     chi: '',
     chiRaw:'',
     chaiTotalSupply:'',
+    deurTotalSupply:'',
     joinAmount: new WadDecimal(0),
     exitAmount: new WadDecimal(0),
     joinexitAction: 0,
@@ -96,6 +102,10 @@ class App extends React.Component {
                         <Grid item xs={12}><br/></Grid>
                         <NavContainer />
 
+
+                        <Grid item xs={12}>
+                          <DeurMintContainer />
+                        </Grid>
                         <Grid item xs={12} md={6}>
                             <JoinExitContainer />
                         </Grid>
