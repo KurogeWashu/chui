@@ -42,6 +42,7 @@ class DeurBalanceContainer extends React.Component {
         const der = store.get('der')
         // const dsrPercent = dsr;
         const deurBalance = store.get('deurBalance')
+        const deurTotalSupply = store.get('deurTotalSupply')
         const deurBalanceRaw = store.get('deurBalanceRaw')
         const daiEquiv = deurBalanceRaw ? toDai.bind(this)(deurBalanceRaw).toFormat(5) : undefined
       return <Card ><CardContent>
@@ -53,8 +54,10 @@ class DeurBalanceContainer extends React.Component {
         src={deurBalance > 0 ? logogif : logostill}
          />
 
-        <p>Deur balance: {deurBalance ? `${deurBalance}` : '-'}</p>
-        <p>About ~ {der ? `${der*deurBalance}` : '?'} DAI</p>
+        <p>Deur balance: {deurBalance ? `${deurBalance}` : '-'} {der ? `(~ ${der*deurBalance} DAI)` : ''}</p>
+        <p>Total Supply: {deurTotalSupply ? `${deurTotalSupply}` : '-'}
+         {/* {der ? `(~ ${der*deurTotalSupply} DAI)` : ''} */}
+         </p>
         {/* <p>Dai Savings Rate: {dsrPercent ? `${dsrPercent}% per year` : '-'}</p> */}
         <a target="_blank" href="/about.html" rel="noopener noreferrer">Learn more</a>
         </CardContent></Card>
