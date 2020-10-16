@@ -45,7 +45,7 @@ class DeurBalanceContainer extends React.Component {
         const deurBalanceRaw = store.get('deurBalanceRaw')
         const daiEquiv = deurBalanceRaw ? toDai.bind(this)(deurBalanceRaw).toFormat(5) : undefined
       return <Card ><CardContent>
-        <h2>You have {deurBalance ? daiEquiv : '0'} Deur</h2>
+        <h2>You have digitized {deurBalance ? daiEquiv : '0'} euros</h2>
                  <CardMedia
          component="img"
                   style={{resizeMode: 'contain',     width: 100, float: 'right', paddingRight: 52
@@ -54,7 +54,7 @@ class DeurBalanceContainer extends React.Component {
          />
 
         <p>Deur balance: {deurBalance ? `${deurBalance}` : '-'}</p>
-        <p>1 DEUR = {der ? `${der}` : '?'} DAI</p>
+        <p>About ~ {der ? `${der*deurBalance}` : '?'} DAI</p>
         {/* <p>Dai Savings Rate: {dsrPercent ? `${dsrPercent}% per year` : '-'}</p> */}
         <a target="_blank" href="/about.html" rel="noopener noreferrer">Learn more</a>
         </CardContent></Card>

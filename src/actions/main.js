@@ -27,6 +27,24 @@ export const join = async function() {
     return deur.methods.join(walletAddress, joinAmount.toFixed()).send({from: walletAddress})
 }
 
+export const mint = async function() {
+    const { store } = this.props
+    const web3 = store.get('web3')
+    const deur = store.get('deurObject')
+    const dai = store.get('daiObject')
+    const mintAmount = store.get('mintAmount').mul(10**18)
+    const walletAddress = store.get('walletAddress')
+    const allowance = store.get('daiAllowance')
+    if (mintAmount.cmp(allowance)>0) {
+      return dai.methods.approve(deur.options.address, "-1")
+        .send({from: walletAddress})
+        .then(function () {
+          return deur.methods.mint(walletAddress, mintAmount.toFixed()).send({from: walletAddress})
+        });
+    }
+    return deur.methods.mint(walletAddress, mintAmount.toFixed()).send({from: walletAddress})
+}
+
 export const transfer = async function() {
     const { store } = this.props
     const web3 = store.get('web3')
@@ -40,5 +58,6 @@ export const transfer = async function() {
 export default {
     join,
     exit,
+    mint,
     transfer,
 }

@@ -79,6 +79,7 @@ const initialState = {
     deurTotalSupply:'',
     joinAmount: new WadDecimal(0),
     exitAmount: new WadDecimal(0),
+    mintAmount: new WadDecimal(0),
     joinexitAction: 0,
     transferAmount: new WadDecimal(0),
 }
@@ -103,15 +104,14 @@ class App extends React.Component {
                         <NavContainer />
 
 
-                        <Grid item xs={12}>
+                        <Grid item xs={12} md={12}>
+                            <DeurBalanceContainer />
+                        </Grid>
+                        <Grid item xs={6}>
                           <DeurMintContainer />
                         </Grid>
                         <Grid item xs={12} md={6}>
                             <JoinExitContainer />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <DeurBalanceContainer />
-
                         </Grid>
                         <Grid item xs={12}>
                           <TransferDeurContainer />

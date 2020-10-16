@@ -85,20 +85,20 @@ class TransferDeurContainer extends React.Component {
         const canTransfer = transferAmount && transferAddress && (transferAmount <= deurBalanceDecimal)
 
         return <Grid container spacing={3}>
-               <Grid item xs={12}><Card><CardContent>
+     <Grid item xs={12}><Card><CardContent>
         <Typography variant='h4'>Transfer Deur</Typography>
         <Typography variant='subtitle2'>Send Deur to any address</Typography>
         <Button variant='text' className={classes.accountBalance}
             style={{textTransform: 'none'}}
       onClick={this.setMax.bind(this)}
         >{deurBalance ? `Balance: ${deurBalance} DEUR` : '-'}</Button>
-                <Grid container alignItems="flex-start" spacing={3}>
-                  <Grid item xs={12} md={6}>
+    <Grid container alignItems="flex-start" spacing={3}>
+      <Grid item xs={12} md={6}>
         <TextField label='Receiving address' placeholder='0x' className={classes.input} margin="normal" variant="outlined" onChange={(event) => {
                             store.set('transferAddress', event.target.value)
                         }} />
-        </Grid>
-                          <Grid container item xs={12} md={6} spacing={3}>
+      </Grid>
+      <Grid item xs={12} md={6}>
         <TextField label="DEUR Value"
             placeholder='0'
             className={classes.input}
@@ -112,9 +112,9 @@ class TransferDeurContainer extends React.Component {
                                        }}
             helperText={(isSignedIn && transferAmount) ? "Worth: ~" + toDai.bind(this)(transferAmount.mul(10**18)) + " Dai": " "}
         />
-                  </Grid>
+      </Grid>
 
-               </Grid>
+    </Grid>
                <Box className={classes.actionButtonContainer}>
                   <Button color='primary'
                     size='large'

@@ -112,11 +112,13 @@ class JoinExitContainer extends React.Component {
         const joinexitAction = store.get('joinexitAction')
 
         return <Card className={classes.card}>
+                  <CardContent>
+        <h2>Exchange</h2>
                     <Tabs value={joinexitAction} onChange={this.handleChange.bind(this)} centered>
                       <Tab label="Dai -> Deur" id="join-tab" />
                       <Tab label="Deur -> Dai" id="exit-tab" />
                     </Tabs>
-                  <CardContent>
+                    <br/>
 
                   <Box hidden={joinexitAction !== 0}> <Typography variant='subtitle2'>Exchange Dai for Deur</Typography>
         <Button variant="text" className={classes.accountBalance}
