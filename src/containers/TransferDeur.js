@@ -88,17 +88,17 @@ class TransferDeurContainer extends React.Component {
                <Grid item xs={12}><Card><CardContent>
         <Typography variant='h4'>Transfer Deur</Typography>
         <Typography variant='subtitle2'>Send Deur to any address</Typography>
-        <Button variant='subtitle2' className={classes.accountBalance}
+        <Button variant='text' className={classes.accountBalance}
             style={{textTransform: 'none'}}
       onClick={this.setMax.bind(this)}
         >{deurBalance ? `Balance: ${deurBalance} DEUR` : '-'}</Button>
-                <Grid container alignItems="start" spacing={3}>
+                <Grid container alignItems="flex-start" spacing={3}>
                   <Grid item xs={12} md={6}>
         <TextField label='Receiving address' placeholder='0x' className={classes.input} margin="normal" variant="outlined" onChange={(event) => {
                             store.set('transferAddress', event.target.value)
                         }} />
         </Grid>
-                          <Grid item xs={12} md={6} spacing={3}>
+                          <Grid container item xs={12} md={6} spacing={3}>
         <TextField label="DEUR Value"
             placeholder='0'
             className={classes.input}
