@@ -79,7 +79,7 @@ class TransferDeurContainer extends React.Component {
         const transferAmount = store.get('transferAmount')
         const transferAddress = store.get('transferAddress')
         const deurBalanceDecimal = store.get('deurBalanceDecimal')
-        const web3 = store.get('web3');
+        // const web3 = store.get('web3');
         const isSignedIn = walletAddress && walletAddress.length
 
         const canTransfer = transferAmount && transferAddress && (transferAmount <= deurBalanceDecimal)

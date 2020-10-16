@@ -3,24 +3,29 @@ import {withStore} from '@spyna/react-store'
 import {withStyles} from '@material-ui/styles';
 import theme from '../theme/theme'
 import { WadDecimal, getData, toDai } from '../utils/web3Utils'
-import { mint } from '../actions/main'
+// import { mint } from '../actions/main'
 
 import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
+// import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
-import Box from '@material-ui/core/Box'
+// import Box from '@material-ui/core/Box'
 
-import logogif from '../assets/logo.gif'
-import logostill from '../assets/logostill.png'
+// import logogif from '../assets/logo.gif'
+// import logostill from '../assets/logostill.png'
 
 const styles = () => ({
     container: {
         paddingTop: theme.spacing(1),
         paddingBottom: theme.spacing(3),
         minHeight: 52
+    },
+   input: {
+        width: '100%',
+        marginTop: theme.spacing(1),
+        marginBottom: theme.spacing(3)
     },
     accountBalance: {
         float: 'right',
@@ -65,20 +70,20 @@ class DeurMintContainer extends React.Component {
 
     render() {
         const {classes, store} = this.props
-        const dsr = store.get('dsr')
+        // const dsr = store.get('dsr')
         const der = store.get('der')
-        const dsrPercent = dsr;
-        const deurMint = store.get('deurMint')
-        const deurMintRaw = store.get('deurMintRaw')
+        // const dsrPercent = dsr;
+        // const deurMint = store.get('deurMint')
+        // const deurMintRaw = store.get('deurMintRaw')
         const deurBalance = store.get('deurBalance')
-        const daiEquiv = deurMintRaw ? toDai.bind(this)(deurMintRaw).toFormat(5) : undefined
+        // const daiEquiv = deurMintRaw ? toDai.bind(this)(deurMintRaw).toFormat(5) : undefined
 
 
         const walletAddress = store.get('walletAddress')
         const web3 = store.get('web3')
         const isSignedIn = walletAddress && walletAddress.length
         const mintAmount = store.get('mintAmount')
-        const deurBalanceDecimal = store.get('deurBalanceDecimal')
+        // const deurBalanceDecimal = store.get('deurBalanceDecimal')
         // const canExit = mintAmount && (mintAmount.cmp(deurBalanceDecimal) < 1)
         const canExit = true
       return <Card ><CardContent>

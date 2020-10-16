@@ -10,16 +10,18 @@ import deurABI from './abi/Deur.json'
 
 import NavContainer from './containers/Nav'
 import JoinExitContainer from './containers/JoinExit'
-import ChaiBalanceContainer from './containers/ChaiBalance'
+// import ChaiBalanceContainer from './containers/ChaiBalance'
 import DeurBalanceContainer from './containers/DeurBalance'
 import DeurMintContainer from './containers/DeurMint'
 import TotalSupplyContainer from './containers/TotalSupply'
 import TransferDeurContainer from './containers/TransferDeur'
-import { setupContracts, getData, WadDecimal } from './utils/web3Utils'
+import { 
+  // setupContracts, getData, 
+  WadDecimal } from './utils/web3Utils'
 
 import theme from './theme/theme'
 
-import Typography from '@material-ui/core/Typography'
+// import Typography from '@material-ui/core/Typography'
 import { withStyles, ThemeProvider } from '@material-ui/styles'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'

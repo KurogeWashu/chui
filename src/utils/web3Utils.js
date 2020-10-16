@@ -132,7 +132,7 @@ export const getDeurBalance = async function() {
 
 export const getChaiTotalSupply = async function() {
   const { store } = this.props
-  const web3 = store.get('web3')
+  // const web3 = store.get('web3')
   const chai = store.get('chaiObject')
   if (!chai) return
   const chaiTotalSupplyRaw = await chai.methods.totalSupply().call()
@@ -142,7 +142,7 @@ export const getChaiTotalSupply = async function() {
 
 export const getDeurTotalSupply = async function() {
   const { store } = this.props
-  const web3 = store.get('web3')
+  // const web3 = store.get('web3')
   const deur = store.get('deurObject')
   if (!deur) return
   const deurTotalSupplyRaw = await deur.methods.totalSupply().call()

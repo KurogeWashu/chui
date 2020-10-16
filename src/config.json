@@ -4,6 +4,6 @@
   "CHAI": "0xb641957b6c29310926110848db2d464c8c3c3f38",
   "DEUR": "0xE7de68A7d3151d7217ee23de133A3fa3385f705b",
   "MANAGER": "0x9Eb9eb4B51eE687Fb9fb68fF16DE52CE723ceC7A",
-  "defaultWeb3Provider": "http://cors-anywhere.herokuapp.com/https://kovan.infura.io/v3/8facbab2998b411ea0cef95ae90b66f1",
+  "defaultWeb3Provider": "https://kovan.infura.io/v3/8facbab2998b411ea0cef95ae90b66f1",
   "network": 42
 }

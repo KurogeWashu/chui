@@ -2,7 +2,9 @@ import React from 'react'
 import {withStore} from '@spyna/react-store'
 import {withStyles} from '@material-ui/styles'
 import theme from '../theme/theme'
-import { WadDecimal, getData, toChai, toDai, toDeur } from '../utils/web3Utils'
+import { WadDecimal, getData, 
+  // toChai, 
+  toDai, toDeur } from '../utils/web3Utils'
 import { join, exit } from '../actions/main'
 
 import Tabs from '@material-ui/core/Tabs'
@@ -96,10 +98,10 @@ class JoinExitContainer extends React.Component {
         const walletAddress = store.get('walletAddress')
         const daiBalance = store.get('daiBalance')
         const daiBalanceDecimal = store.get('daiBalanceDecimal')
-        const chaiBalance = store.get('chaiBalance')
-        const chaiBalanceDecimal = store.get('chaiBalanceDecimal')
+        // const chaiBalance = store.get('chaiBalance')
+        // const chaiBalanceDecimal = store.get('chaiBalanceDecimal')
         const deurBalance = store.get('deurBalance')
-        const deurBalanceDecimal = store.get('deurBalanceDecimal')
+        // const deurBalanceDecimal = store.get('deurBalanceDecimal')
         const joinAmount = store.get('joinAmount')
         const exitAmount = store.get('exitAmount')
         const web3 = store.get('web3')

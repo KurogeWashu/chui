@@ -2,7 +2,7 @@ import { } from '../utils/web3Utils';
 
 export const exit = async function() {
     const { store } = this.props
-    const web3 = store.get('web3')
+    // const web3 = store.get('web3')
     const deur = store.get('deurObject')
     const exitAmount = store.get('exitAmount').mul(10**18)
     const walletAddress = store.get('walletAddress')
@@ -11,7 +11,7 @@ export const exit = async function() {
 
 export const join = async function() {
     const { store } = this.props
-    const web3 = store.get('web3')
+    // const web3 = store.get('web3')
     const deur = store.get('deurObject')
     const dai = store.get('daiObject')
     const joinAmount = store.get('joinAmount').mul(10**18)
@@ -29,7 +29,7 @@ export const join = async function() {
 
 export const mint = async function() {
     const { store } = this.props
-    const web3 = store.get('web3')
+    // const web3 = store.get('web3')
     const deur = store.get('deurObject')
     const dai = store.get('daiObject')
     const mintAmount = store.get('mintAmount').mul(10**18)
@@ -47,7 +47,7 @@ export const mint = async function() {
 
 export const transfer = async function() {
     const { store } = this.props
-    const web3 = store.get('web3')
+    // const web3 = store.get('web3')
     const deur = store.get('deurObject')
     const transferAmount = store.get('transferAmount').mul(10**18)
     const transferAddress = store.get('transferAddress')

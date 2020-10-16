@@ -38,9 +38,9 @@ class DeurBalanceContainer extends React.Component {
 
     render() {
         const {store} = this.props
-        const dsr = store.get('dsr')
+        // const dsr = store.get('dsr')
         const der = store.get('der')
-        const dsrPercent = dsr;
+        // const dsrPercent = dsr;
         const deurBalance = store.get('deurBalance')
         const deurBalanceRaw = store.get('deurBalanceRaw')
         const daiEquiv = deurBalanceRaw ? toDai.bind(this)(deurBalanceRaw).toFormat(5) : undefined
