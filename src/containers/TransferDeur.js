@@ -93,12 +93,12 @@ class TransferDeurContainer extends React.Component {
       onClick={this.setMax.bind(this)}
         >{deurBalance ? `Balance: ${deurBalance} DEUR` : '-'}</Button>
     <Grid container alignItems="flex-start" spacing={3}>
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={12}>
         <TextField label='Receiving address' placeholder='0x' className={classes.input} margin="normal" variant="outlined" onChange={(event) => {
                             store.set('transferAddress', event.target.value)
                         }} />
       </Grid>
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={12}>
         <TextField label="DEUR Value"
             placeholder='0'
             className={classes.input}

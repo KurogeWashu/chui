@@ -111,17 +111,17 @@ class App extends React.Component {
                         <Grid item xs={12} md={12}>
                             <DeurBalanceContainer />
                         </Grid>
-                        <Grid item xs={12} md={12}>
-                          <DeurStakeContainer />
-                        </Grid>
-                        <Grid item xs={6}>
-                          <DeurMintContainer />
-                        </Grid>
                         <Grid item xs={12} md={6}>
                             <JoinExitContainer />
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={12} md={6}>
                           <TransferDeurContainer />
+                        </Grid>
+                        <Grid item xs={12} md={12}>
+                          <DeurStakeContainer />
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                          <DeurMintContainer />
                         </Grid>
                         <Grid item xs={12} className={classes.footer}>
                           Interacting with the dEuro contract at: <a target="_blank" href={"https://kovan.etherscan.io/token/" + config.DEUR} rel="noopener noreferrer">{config.DEUR}</a><br />
