@@ -111,7 +111,7 @@ class App extends React.Component {
                         <Grid item xs={12} md={12}>
                             <DeurBalanceContainer />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={12} md={12}>
                           <DeurStakeContainer />
                         </Grid>
                         <Grid item xs={6}>
