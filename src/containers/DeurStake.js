@@ -22,6 +22,7 @@ import Grid from '@material-ui/core/Grid';
 // import GridListTile from '@material-ui/core/GridListTile';
 // import ListSubheader from '@material-ui/core/ListSubheader';
 import Hidden from '@material-ui/core/Hidden';
+import Typography from '@material-ui/core/Typography';
 
 // import logogif from '../assets/logo.gif'
 // import logostill from '../assets/logostill.png'
@@ -156,7 +157,7 @@ class DeurStakeContainer extends React.Component {
         }];
 
         return <Card ><CardContent>
-        <h2>Stake DEUR</h2>
+        <Typography variant='h4'>Stake</Typography>
 
 
         <Grid container spacing={3} justify="space-around" alignItems="center" >

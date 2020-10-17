@@ -115,14 +115,20 @@ class JoinExitContainer extends React.Component {
 
         return <Card className={classes.card}>
                   <CardContent>
-        <h2>Exchange</h2>
+                    <Typography variant='h4'>Exchange</Typography>
+
+                    {/* TODO: Add radio buttons to choose which token to interface with */}
+
                     <Tabs value={joinexitAction} onChange={this.handleChange.bind(this)} centered>
-                      <Tab label="Dai -> Deur" id="join-tab" />
-                      <Tab label="Deur -> Dai" id="exit-tab" />
+                      {/* Dai -> Deur */}
+                      <Tab label="Buy" id="join-tab" />
+                      {/* Deur -> Dai */}
+                      <Tab label="Sell" id="exit-tab" />
                     </Tabs>
                     <br/>
 
-                  <Box hidden={joinexitAction !== 0}> <Typography variant='subtitle2'>Exchange Dai for Deur</Typography>
+                  <Box hidden={joinexitAction !== 0}> 
+                    <Typography variant='subtitle1' align="center">DAI &#8594; DEUR</Typography><br/>
         <Button variant="text" className={classes.accountBalance}
       style={{textTransform: 'none'}}
       onClick={this.setMax.bind(this)}
@@ -141,7 +147,7 @@ class JoinExitContainer extends React.Component {
                         </Button>
                   </Box>
                   <Box hidden={joinexitAction !== 1}>
-                    <Typography variant='subtitle2'>Convert Deur back to Dai</Typography>
+                    <Typography variant='subtitle1' align="center">DEUR &#8594; DAI</Typography><br/>
         <Button className={classes.accountBalance}
       style={{textTransform: 'none'}}
       onClick={this.setMax.bind(this)}
@@ -149,7 +155,7 @@ class JoinExitContainer extends React.Component {
         <TextField label="DEUR Amount" placeholder='0' className={classes.input} margin="normal" variant="outlined" value={exitAmount.toString() !== "0" ? exitAmount : ''} type="number" onChange={this.handleInput.bind(this)} InputProps={{ inputProps: { min: 0 },
                             endAdornment: <InputAdornment className={classes.endAdornment} position="end">DEUR</InputAdornment>
                         }}
-      helperText={(isSignedIn && exitAmount) ? "You will receive at least: " + toDai.bind(this)(web3.utils.toWei(String(exitAmount))) + " Dai": " "}
+      helperText={(isSignedIn && exitAmount) ? "You will receive approximately " + toDai.bind(this)(web3.utils.toWei(String(exitAmount))) + " Dai": " "}
         />
                     <Button color='primary'
                         size='large'

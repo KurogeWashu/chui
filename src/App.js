@@ -120,6 +120,9 @@ class App extends React.Component {
                         <Grid item xs={12} md={12}>
                           <DeurStakeContainer />
                         </Grid>
+                        {/* <Grid item xs={12} md={6}> */}
+                        {/*   <AllowanceContainer /> */}
+                        {/* </Grid> */}
                         <Grid item xs={12} md={6}>
                           <DeurMintContainer />
                         </Grid>
