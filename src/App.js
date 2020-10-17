@@ -13,6 +13,7 @@ import JoinExitContainer from './containers/JoinExit'
 // import ChaiBalanceContainer from './containers/ChaiBalance'
 import DeurBalanceContainer from './containers/DeurBalance'
 import DeurMintContainer from './containers/DeurMint'
+import DeurStakeContainer from './containers/DeurStake'
 import TotalSupplyContainer from './containers/TotalSupply'
 import TransferDeurContainer from './containers/TransferDeur'
 import { 
@@ -82,6 +83,7 @@ const initialState = {
     joinAmount: new WadDecimal(0),
     exitAmount: new WadDecimal(0),
     mintAmount: new WadDecimal(0),
+    stakeAmount: new WadDecimal(0),
     joinexitAction: 0,
     transferAmount: new WadDecimal(0),
 }
@@ -108,6 +110,9 @@ class App extends React.Component {
 
                         <Grid item xs={12} md={12}>
                             <DeurBalanceContainer />
+                        </Grid>
+                        <Grid item xs={6}>
+                          <DeurStakeContainer />
                         </Grid>
                         <Grid item xs={6}>
                           <DeurMintContainer />
