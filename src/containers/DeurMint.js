@@ -3,7 +3,7 @@ import {withStore} from '@spyna/react-store'
 import {withStyles} from '@material-ui/styles';
 import theme from '../theme/theme'
 import { WadDecimal, getData, toDai } from '../utils/web3Utils'
-// import { mint } from '../actions/main'
+import { mint } from '../actions/main'
 
 import Card from '@material-ui/core/Card';
 // import CardMedia from '@material-ui/core/CardMedia';
@@ -109,9 +109,9 @@ class DeurMintContainer extends React.Component {
         /><br/><br/><br/>
                     <Button color='primary'
                         size='large'
-                        onClick={() => {
-                            this.exit()
-                        }} variant="contained" disabled={!isSignedIn || !canExit} className={classes.actionButton}>
+                        onClick={
+                            mint.bind(this)
+                        } variant="contained" disabled={!isSignedIn || !canExit} className={classes.actionButton}>
                        Mint DEUR
                     </Button>
                     {/* </Box> */}

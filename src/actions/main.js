@@ -34,6 +34,16 @@ export const mint = async function() {
     const dai = store.get('daiObject')
     const mintAmount = store.get('mintAmount').mul(10**18)
     const walletAddress = store.get('walletAddress')
+    console.log(`${walletAddress} mints ${mintAmount}`)
+    // might need to add confirmation events to display notifications and whatnot 
+    // then update balance etc
+    return deur.methods.mint(walletAddress, mintAmount.toFixed()).send(
+        {from: walletAddress,
+        value: 0,
+        gasPrice: 0,
+        //gas: 500000 // Gas limit??
+              })
+
     const allowance = store.get('daiAllowance')
     if (mintAmount.cmp(allowance)>0) {
       return dai.methods.approve(deur.options.address, "-1")
