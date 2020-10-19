@@ -76,9 +76,9 @@ export const getDaiAllowance = async function() {
   const { store } = this.props
   const walletAddress = store.get('walletAddress')
   const dai = store.get('daiObject')
+  const mgr = store.get('mgrObject')
   if (!dai || !walletAddress) return
-  // const daiAllowance = await dai.methods.allowance(walletAddress, chaiAddress).call()
-  const daiAllowance = 1000000;
+  const daiAllowance = await dai.methods.allowance(walletAddress, mgrAddress).call()
   store.set('daiAllowance', new WadDecimal(daiAllowance).div('1e18'))
 }
 
@@ -87,8 +87,8 @@ export const getDeurAllowance = async function() {
   const walletAddress = store.get('walletAddress')
   const deur = store.get('deurObject')
   if (!deur || !walletAddress) return
-  // const deurAllowance = await deur.methods.allowance(walletAddress, deurAddress).call()
-  const deurAllowance = 1000000;
+  const deurAllowance = await deur.methods.allowance(walletAddress, mgrAddress).call()
+  console.log(deurAllowance)
   store.set('deurAllowance', new WadDecimal(deurAllowance).div('1e18'))
 }
 
@@ -98,8 +98,7 @@ export const getDaiBalance = async function() {
   const walletAddress = store.get('walletAddress')
   const dai = store.get('daiObject')
   if (!dai || !walletAddress) return
-  // const daiBalanceRaw = await dai.methods.balanceOf(walletAddress).call()
-   const daiBalanceRaw = 1000000;
+  const daiBalanceRaw = await dai.methods.balanceOf(walletAddress).call()
   const daiBalanceDecimal = new WadDecimal(daiBalanceRaw).div('1e18')
   store.set('daiBalanceDecimal', daiBalanceDecimal)
   const daiBalance = toFixed(parseFloat(web3.utils.fromWei(daiBalanceRaw)),5)
@@ -113,7 +112,7 @@ export const getChaiBalance = async function() {
   const walletAddress = store.get('walletAddress')
   if (!chai || !walletAddress) return
   // const chaiBalanceRaw = await chai.methods.balanceOf(walletAddress).call()
-  const chaiBalanceRaw = 1000000
+  const chaiBalanceRaw = '1000000'
   store.set('chaiBalanceRaw', chaiBalanceRaw)
   const chaiBalanceDecimal = new WadDecimal(chaiBalanceRaw).div('1e18')
   store.set('chaiBalanceDecimal', chaiBalanceDecimal)
@@ -128,9 +127,9 @@ export const getDeurBalance = async function() {
   const walletAddress = store.get('walletAddress')
   if (!deur || !walletAddress) return
   // const deurBalanceRaw = await deur.methods.balanceOf(walletAddress).call()
-  const deurBalanceRaw = 1000000;
+  const deurBalanceRaw = '100' + '0'.repeat(18);
   store.set('deurBalanceRaw', deurBalanceRaw)
-  const deurBalanceDecimal = new WadDecimal(deurBalanceRaw).div('1e18')
+  const deurBalanceDecimal = new WadDecimal(deurBalanceRaw)//.div('1e18')
   store.set('deurBalanceDecimal', deurBalanceDecimal)
   const deurBalance = toFixed(parseFloat(web3.utils.fromWei(deurBalanceRaw)),5)
   store.set('deurBalance', deurBalance)
@@ -142,7 +141,7 @@ export const getChaiTotalSupply = async function() {
   const chai = store.get('chaiObject')
   if (!chai) return
   // const chaiTotalSupplyRaw = await chai.methods.totalSupply().call()
-  const chaiTotalSupplyRaw = 10000000
+  const chaiTotalSupplyRaw = '10000000'
   const chaiTotalSupplyDecimal = new WadDecimal(chaiTotalSupplyRaw)
   store.set('chaiTotalSupply', toDai.bind(this)(chaiTotalSupplyDecimal))
 }
@@ -152,10 +151,9 @@ export const getDeurTotalSupply = async function() {
   // const web3 = store.get('web3')
   const deur = store.get('deurObject')
   if (!deur) return
-  // const deurTotalSupplyRaw = await deur.methods.totalSupply().call()
-  const deurTotalSupplyRaw = 10000000;
-  const deurTotalSupplyDecimal = new WadDecimal(deurTotalSupplyRaw)
-  store.set('deurTotalSupply', toDai.bind(this)(deurTotalSupplyDecimal))
+  const deurTotalSupplyRaw = await deur.methods.totalSupply().call()
+  const deurTotalSupplyDecimal = new WadDecimal(deurTotalSupplyRaw).div('1e18')
+  store.set('deurTotalSupply', deurTotalSupplyDecimal)
 }
 
 export const toDeur = function(daiAmount) {

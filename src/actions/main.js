@@ -1,37 +1,59 @@
-import { } from '../utils/web3Utils';
+import {  } from '../utils/web3Utils';
+const log = x => console.log(x)
+
 
 export const exit = async function() {
     const { store } = this.props
-    // const web3 = store.get('web3')
+    const web3 = store.get('web3')
     const deur = store.get('deurObject')
+    const mgr = store.get('mgrObject')
     const exitAmount = store.get('exitAmount').mul(10**18)
     const walletAddress = store.get('walletAddress')
-    return deur.methods.burn(walletAddress, exitAmount.toFixed()).send({from: walletAddress})
+    const allowance = store.get('deurAllowance')
+    console.log(walletAddress)
+    const exitBN = new web3.utils.BN(exitAmount.mul('1e18').toString()) 
+    console.log(exitAmount.toString(), allowance.toString());
+    if (exitAmount.cmp(allowance)>0) {
+      await deur.methods.approve(mgr.options.address, exitBN)
+        .send({from: walletAddress})
+    }
+    return mgr.methods.swapdEurtoDAI(exitBN)
+              .send({from: walletAddress})
+              .once('transactionHash', log) 
+              .on('error', log)
+              .catch(e => log)
+     
+    //return deur.methods.burn(walletAddress, exitAmount.toFixed()).send({from: walletAddress})
 }
 
 export const join = async function() {
     const { store } = this.props
-    // const web3 = store.get('web3')
-    const deur = store.get('deurObject')
+    const web3 = store.get('web3')
     const dai = store.get('daiObject')
-    const joinAmount = store.get('joinAmount').mul(10**18)
+    const mgr = store.get('mgrObject')
+    const joinAmount = store.get('joinAmount')
     const walletAddress = store.get('walletAddress')
     const allowance = store.get('daiAllowance')
+    const joinBN = new web3.utils.BN(joinAmount.mul('1e18').toString()) 
+    console.log(joinAmount.toString(), allowance.toString());
     if (joinAmount.cmp(allowance)>0) {
-      return dai.methods.approve(deur.options.address, "-1")
+      await dai.methods.approve(mgr.options.address, joinBN)
         .send({from: walletAddress})
-        .then(function () {
-          return deur.methods.join(walletAddress, joinAmount.toFixed()).send({from: walletAddress})
-        });
     }
-    return deur.methods.join(walletAddress, joinAmount.toFixed()).send({from: walletAddress})
+    return mgr.methods.swapDAItodEur(joinBN)
+              .send({from: walletAddress})
+              .once('sending', log)
+              .once('sent', log)
+              .once('transactionHash', log) 
+              .once('receipt', log)
+              .on('error', log)
+              .then(() => log("done"))
 }
 
 export const mint = async function() {
     const { store } = this.props
-    // const web3 = store.get('web3')
+    const web3 = store.get('web3')
     const deur = store.get('deurObject')
-    const dai = store.get('daiObject')
     const mintAmount = store.get('mintAmount').mul(10**18)
     const walletAddress = store.get('walletAddress')
     console.log(`${walletAddress} mints ${mintAmount}`)
@@ -40,19 +62,9 @@ export const mint = async function() {
     return deur.methods.mint(walletAddress, mintAmount.toFixed()).send(
         {from: walletAddress,
         value: 0,
-        gasPrice: 0,
+        gasPrice: web3.utils.toWei("11", "gwei"), //not needed?
         //gas: 500000 // Gas limit??
               })
-
-    const allowance = store.get('daiAllowance')
-    if (mintAmount.cmp(allowance)>0) {
-      return dai.methods.approve(deur.options.address, "-1")
-        .send({from: walletAddress})
-        .then(function () {
-          return deur.methods.mint(walletAddress, mintAmount.toFixed()).send({from: walletAddress})
-        });
-    }
-    return deur.methods.mint(walletAddress, mintAmount.toFixed()).send({from: walletAddress})
 }
 
 export const stake = async function() {

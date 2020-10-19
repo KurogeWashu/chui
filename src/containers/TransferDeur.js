@@ -87,7 +87,7 @@ class TransferDeurContainer extends React.Component {
         return <Grid container spacing={3}>
      <Grid item xs={12}><Card><CardContent>
         <Typography variant='h4'>Transfer</Typography>
-        <Typography variant='subtitle2'>Send Deur to any address</Typography>
+        <Typography variant='subtitle2'>Send dEur to any address</Typography>
         <Button variant='text' className={classes.accountBalance}
             style={{textTransform: 'none'}}
       onClick={this.setMax.bind(this)}
