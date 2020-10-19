@@ -36,7 +36,7 @@ class DeurMintContainer extends React.Component {
 
     async componentDidMount() {
         // update data periodically
-        this.watchDsrData()
+       // this.watchDsrData()
     }
 
     async watchDsrData() {

@@ -26,7 +26,7 @@ class DeurBalanceContainer extends React.Component {
 
     async componentDidMount() {
         // update data periodically
-        this.watchDsrData()
+        //this.watchDsrData()
     }
 
     async watchDsrData() {
@@ -42,9 +42,10 @@ class DeurBalanceContainer extends React.Component {
         const der = store.get('der')
         // const dsrPercent = dsr;
         const deurBalance = store.get('deurBalance')
+        const dankBalance = store.get('dankBalance')
         const deurTotalSupply = store.get('deurTotalSupply')
-        const deurBalanceRaw = store.get('deurBalanceRaw')
-        const daiEquiv = deurBalanceRaw ? toDai.bind(this)(deurBalanceRaw).toFormat(5) : undefined
+        //const deurBalanceRaw = store.get('deurBalanceRaw')
+        //const daiEquiv = deurBalanceRaw ? toDai.bind(this)(deurBalanceRaw).toFormat(5) : undefined
       return <Card ><CardContent>
         <h2>You have digitized {deurBalance ? deurBalance : '0'} euros</h2>
                  <CardMedia
@@ -54,8 +55,9 @@ class DeurBalanceContainer extends React.Component {
         src={deurBalance > 0 ? logogif : logostill}
          />
 
-        <p>Deur balance: {deurBalance ? `${deurBalance}` : '-'} {der ? `(~ ${der*deurBalance} DAI)` : ''}</p>
-        <p>Total supply: {deurTotalSupply ? `${deurTotalSupply}` : '-'}
+        <p>dEur balance: {deurBalance ? `${deurBalance}` : '-'} {der ? `(~ ${der*deurBalance} DAI)` : ''}</p>
+        <p>DANK balance: {dankBalance ? `${dankBalance}` : '-'}</p>
+        <p>dEur Total supply: {deurTotalSupply ? `${deurTotalSupply}` : '-'}
          {/* {der ? `(~ ${der*deurTotalSupply} DAI)` : ''} */}
          </p>
         {/* <p>Dai Savings Rate: {dsrPercent ? `${dsrPercent}% per year` : '-'}</p> */}

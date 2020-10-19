@@ -17,7 +17,8 @@ import DeurStakeContainer from './containers/DeurStake'
 import TotalSupplyContainer from './containers/TotalSupply'
 import TransferDeurContainer from './containers/TransferDeur'
 import { 
-  // setupContracts, getData, 
+  // setupContract
+  // getData, 
   WadDecimal } from './utils/web3Utils'
 
 import theme from './theme/theme'
@@ -97,6 +98,7 @@ class App extends React.Component {
 
     async componentDidMount() {
     }
+
 
     render() {
         const classes = this.props.classes

@@ -51,7 +51,7 @@ class DeurStakeContainer extends React.Component {
 
     async componentDidMount() {
         // update data periodically
-        this.watchDsrData()
+      //  this.watchDsrData()
     }
 
     async watchDsrData() {
@@ -95,7 +95,8 @@ class DeurStakeContainer extends React.Component {
         // const deurStakeRaw = store.get('deurStakeRaw')
         // const deurBalance = store.get('deurBalance')
         // const daiEquiv = deurStakeRaw ? toDai.bind(this)(deurStakeRaw).toFormat(5) : undefined
-
+        const daidankBalance = store.get('daidankBalance')
+        const daideurBalance = store.get('daideurBalance')
 
         const walletAddress = store.get('walletAddress')
         // const web3 = store.get('web3')
@@ -127,10 +128,10 @@ class DeurStakeContainer extends React.Component {
          */
         const pools = [{
             img: '',
-            symbol: 'DAI',
+            symbol: 'DAI-DANK',
             apyEst: 0,
             stakedAmount: 0.1,
-            walletBalance: 0.111,
+            walletBalance: daidankBalance? daidankBalance : 0,
             tokenAddress: '',
             tokenContract: ''
         }, {
@@ -143,10 +144,10 @@ class DeurStakeContainer extends React.Component {
             tokenContract: ''
         }, {
             img: '',
-            symbol: 'DEUR-DAI',
+            symbol: 'DAI-DEUR',
             apyEst: 0,
             stakedAmount: 0.1,
-            walletBalance: 0.111,
+            walletBalance: daideurBalance? daideurBalance : 0,
             tokenAddress: '',
             tokenContract: ''
         }, {
@@ -158,6 +159,7 @@ class DeurStakeContainer extends React.Component {
             tokenAddress: '',
             tokenContract: ''
         }];
+
 
         return <Card ><CardContent>
         <Typography variant='h4'>Stake</Typography>
