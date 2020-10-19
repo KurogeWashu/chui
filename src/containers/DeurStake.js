@@ -135,14 +135,14 @@ class DeurStakeContainer extends React.Component {
             tokenAddress: '',
             tokenContract: ''
         }, {
-            img: '',
-            symbol: 'USDC',
-            apyEst: 0,
-            stakedAmount: 0.1,
-            walletBalance: 0.111,
-            tokenAddress: '',
-            tokenContract: ''
-        }, {
+        //     img: '',
+        //     symbol: 'USDC',
+        //     apyEst: 0,
+        //     stakedAmount: 0.1,
+        //     walletBalance: 0.111,
+        //     tokenAddress: '',
+        //     tokenContract: ''
+        // }, {
             img: '',
             symbol: 'DAI-DEUR',
             apyEst: 0,
@@ -151,30 +151,40 @@ class DeurStakeContainer extends React.Component {
             tokenAddress: '',
             tokenContract: ''
         }, {
+        //     img: '',
+        //     symbol: 'DEUR-USDC',
+        //     apyEst: 0,
+        //     stakedAmount: 0.1,
+        //     walletBalance: 0.111,
+        //     tokenAddress: '',
+        //     tokenContract: ''
+        // }, {
             img: '',
-            symbol: 'DEUR-USDC',
+            symbol: 'DANK-DEUR',
             apyEst: 0,
             stakedAmount: 0.1,
             walletBalance: 0.111,
             tokenAddress: '',
             tokenContract: ''
-        }];
+        }
+        ];
 
 
         return <Card ><CardContent>
-        <Typography variant='h4'>Stake</Typography>
+        <Typography variant='h4'>Stake</Typography><br/>
 
 
         <Grid container spacing={3} justify="space-around" alignItems="center" >
-            <Grid item xs sm={3}>&nbsp;&nbsp;Pool</Grid>
+            <Grid item xs sm={3} md>&nbsp;&nbsp;Pool</Grid>
             <Hidden xsDown>
-                <Grid item sm={2} className={classes.numCol}>APY</Grid>
+                <Grid item sm={2} md className={classes.numCol}>APY</Grid>
                 <Hidden smDown>
-                    <Grid item className={classes.numCol}>Staked</Grid>
-                    <Grid item className={classes.numCol}>Unstaked</Grid>
+                    <Grid item md className={classes.numCol}>LP Size</Grid>
+                    <Grid item md className={classes.numCol}>Your Stake</Grid>
+                    <Grid item md className={classes.numCol}>Unstaked</Grid>
                 </Hidden>
             </Hidden>
-            <Grid item xs sm={4} className={classes.numCol}>Amount&nbsp;&nbsp;</Grid>
+            <Grid item xs sm={4} md={3} className={classes.numCol}>Amount&nbsp;&nbsp;</Grid>
           {/* <Grid item xs={12} sm={0}><br/></Grid> */}
         </Grid>
 
@@ -182,7 +192,7 @@ class DeurStakeContainer extends React.Component {
         {pools.map((tile)=>(
             <Grid container spacing={3} justify="space-around" alignItems="center" key={tile.symbol}>
               {/* Pool Name */}
-              <Grid item xs sm={3}>
+              <Grid item xs sm={3} md={2}>
                   <Grid container justify-xs-space-around="true" align-content-xs-space-around="true">
                       <Grid item xs={1} sm={2}>
                           <img src={(tile.img==='') ? 'placeholder image': tile.img} alt={(tile.img==='') ? '': tile.symbol+'_logo'}/>
@@ -194,14 +204,19 @@ class DeurStakeContainer extends React.Component {
 
             <Hidden xsDown>
               {/* APR */}
-              <Grid item sm={2} className={classes.numCol}>
+              <Grid item sm={2} md className={classes.numCol}>
                   {(tile.apyEst).toFixed(2)}
                   {/* add Dank token apr */}
               </Grid>
 
                 <Hidden smDown>
+                  {/* LP Size */}
+                  <Grid item sm={2} md className={classes.numCol}>
+                      {(tile.apyEst).toFixed(2)}
+                      {/* add Dank token apr */}
+                  </Grid>
                   {/* Staked Balance */}
-                  <Grid item className={classes.numCol}>
+                  <Grid item md className={classes.numCol}>
                     {/* <Button variant="text" className={classes.accountBalance} */}
                     {/* style={{textTransform: 'none'}} */}
                     {/* onClick={this.setMax.bind(this)} */}
@@ -211,7 +226,7 @@ class DeurStakeContainer extends React.Component {
 
                   {/* Unstaked Balance */}
                   {/* TODO: mac balance button */}
-                  <Grid item className={classes.numCol}>
+                  <Grid item md className={classes.numCol}>
                       {(tile.walletBalance - tile.stakedAmount).toFixed(2)}
                   </Grid>
                 </Hidden>
@@ -219,7 +234,7 @@ class DeurStakeContainer extends React.Component {
 
 
               {/* Amount Action */}
-              <Grid item xs={7} sm={4} className={classes.numCol}>
+              <Grid item xs={7} sm={4} md={3} className={classes.numCol}>
                   <TextField label="Stake Amount" placeholder='0' className={classes.input} variant="outlined" value={stakeAmount.toString() !== "0" ? stakeAmount : ''} type="number" 
                       // onChange={this.handleInput.bind(this)} 
                       // InputProps={{ inputProps: { min: 0 },
