@@ -76,7 +76,6 @@ export const getDaiAllowance = async function() {
   const { store } = this.props
   const walletAddress = store.get('walletAddress')
   const dai = store.get('daiObject')
-  const mgr = store.get('mgrObject')
   if (!dai || !walletAddress) return
   const daiAllowance = await dai.methods.allowance(walletAddress, mgrAddress).call()
   store.set('daiAllowance', new WadDecimal(daiAllowance).div('1e18'))
@@ -88,7 +87,6 @@ export const getDeurAllowance = async function() {
   const deur = store.get('deurObject')
   if (!deur || !walletAddress) return
   const deurAllowance = await deur.methods.allowance(walletAddress, mgrAddress).call()
-  console.log(deurAllowance)
   store.set('deurAllowance', new WadDecimal(deurAllowance).div('1e18'))
 }
 

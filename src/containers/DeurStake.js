@@ -7,7 +7,7 @@ import {
     getData
     // , toDai 
 } from '../utils/web3Utils'
-// import { stake } from '../actions/main'
+import { stake } from '../actions/main'
 
 import Card from '@material-ui/core/Card';
 // import CardMedia from '@material-ui/core/CardMedia';
@@ -61,6 +61,9 @@ class DeurStakeContainer extends React.Component {
         }, 10 * 1000);
     }
 
+    stake() {
+        stake.bind(this)()
+    }
 
     setMax() {
         const { store } = this.props
@@ -248,7 +251,7 @@ class DeurStakeContainer extends React.Component {
                     <Button color='primary'
                         size='large'
                         onClick={() => {
-                            this.exit()
+                            this.stake()
                         }} variant="contained" disabled={!isSignedIn || !canExit} className={classes.actionButton}>
                        Stake DEUR
                     </Button>

@@ -23,7 +23,6 @@ export const exit = async function() {
               .on('error', log)
               .catch(e => log)
      
-    //return deur.methods.burn(walletAddress, exitAmount.toFixed()).send({from: walletAddress})
 }
 
 export const join = async function() {
@@ -34,7 +33,9 @@ export const join = async function() {
     const joinAmount = store.get('joinAmount')
     const walletAddress = store.get('walletAddress')
     const allowance = store.get('daiAllowance')
-    const joinBN = new web3.utils.BN(joinAmount.mul('1e18').toString()) 
+//    const joinBN = new web3.utils.BN(joinAmount.mul('1e18').toString()) 
+    console.log(joinAmount)
+    const joinBN = web3.utils.toWei(joinAmount.toString(), 'ether')
     console.log(joinAmount.toString(), allowance.toString());
     if (joinAmount.cmp(allowance)>0) {
       await dai.methods.approve(mgr.options.address, joinBN)
@@ -68,6 +69,8 @@ export const mint = async function() {
 }
 
 export const stake = async function() {
+    log("staking.. not coded yet")
+    return;
     const { store } = this.props
     // const web3 = store.get('web3')
     const deur = store.get('deurObject')
