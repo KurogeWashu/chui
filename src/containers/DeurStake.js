@@ -166,7 +166,7 @@ class DeurStakeContainer extends React.Component {
 
 
         <Grid container spacing={3} justify="space-around" alignItems="center" >
-            <Grid item xs sm={3}>Pool</Grid>
+            <Grid item xs sm={3}>&nbsp;&nbsp;Pool</Grid>
             <Hidden xsDown>
                 <Grid item sm={2} className={classes.numCol}>APY</Grid>
                 <Hidden smDown>
@@ -174,7 +174,7 @@ class DeurStakeContainer extends React.Component {
                     <Grid item className={classes.numCol}>Unstaked</Grid>
                 </Hidden>
             </Hidden>
-            <Grid item xs sm className={classes.numCol}>Amount</Grid>
+            <Grid item xs sm={4} className={classes.numCol}>Amount&nbsp;&nbsp;</Grid>
           {/* <Grid item xs={12} sm={0}><br/></Grid> */}
         </Grid>
 
@@ -219,7 +219,7 @@ class DeurStakeContainer extends React.Component {
 
 
               {/* Amount Action */}
-              <Grid item xs={7} sm className={classes.numCol}>
+              <Grid item xs={7} sm={4} className={classes.numCol}>
                   <TextField label="Stake Amount" placeholder='0' className={classes.input} variant="outlined" value={stakeAmount.toString() !== "0" ? stakeAmount : ''} type="number" 
                       // onChange={this.handleInput.bind(this)} 
                       // InputProps={{ inputProps: { min: 0 },
