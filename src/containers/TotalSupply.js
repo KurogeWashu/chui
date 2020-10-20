@@ -5,9 +5,9 @@ import {withStore} from '@spyna/react-store'
 class TotalSupplyContainer extends React.Component {
     render() {
       const {store} = this.props
-      let deurTotalSupply = store.get('deurTotalSupply')
+      let deurTotalSupply = store.get('deurTotalSupplyDecimal')
       if (deurTotalSupply) {
-        deurTotalSupply = deurTotalSupply.toFormat(2, {groupSeparator: ',', groupSize: 3})
+        deurTotalSupply = deurTotalSupply.div('1e18').toFormat(2, {groupSeparator: ',', groupSize: 3})
         return (<p>Dai locked in Deur: {deurTotalSupply} DAI</p>)
       } else {
         return ""

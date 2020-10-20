@@ -1,26 +1,14 @@
 import Web3 from "web3"
 import config from '../config.json'
-import daiABI from '../abi/Dai.abi.json'
+import erc20 from '../abi/ERC20.json'
 import potABI from '../abi/Pot.abi.json'
 import chaiABI from '../abi/Chai.abi.json'
-import deurABI from '../abi/Deur.json'
 import managerABI from '../abi/Manager.json'
-import dankABI from '../abi/Deur.json' // just erc20
 import UniPoolABI from '../abi/UniPool.json'
 import poolABI from '../abi/Pools.json'
 let Decimal = require('decimal.js-light')
 Decimal = require('toformat')(Decimal)
 
-
-const daiAddress = config.MCD_DAI
-const potAddress = config.MCD_POT
-const chaiAddress = config.CHAI
-const deurAddress = config.DEUR
-const mgrAddress = config.MANAGER
-const dankAddress = config.DANK
-const daiDeurUniAddress = config.UNIV2P_DAI_DEUR
-const daiDankUniAddress = config.UNIV2P_DAI_DANK
-const poolAddress = config.DANK // wen Pool tho?
 
 export const WadDecimal = Decimal.clone({
   rounding: 1, // round down
@@ -37,6 +25,29 @@ WadDecimal.format = {
 function toFixed(num, precision) {
     return (+(Math.round(+(num + 'e' + precision)) + 'e' + -precision)).toFixed(precision);
 }
+
+export const approve = async (contract, spender, wallet, amount) => {
+    /*  Approve spender to use amount of contract coins from wallet 
+     *  contract: web3 Contract
+     *  wallet, spender: string 0x eth address
+     *  amount: allowance in Wei
+     */
+
+    const amountDecimal = new WadDecimal(amount)
+    const allowance = await contract.methods
+                                  .allowance(wallet, spender).call()
+    const allowanceDecimal = new WadDecimal(allowance)
+    if (allowanceDecimal.cmp(amountDecimal) < 0) {
+        await contract.methods.approve(spender, amount)
+
+    // Switch to increaseAllowance 
+    return contract.methods.approve(spender, amount)
+                   .send({from: wallet})
+                  // .then(log) // add any notification
+    }
+
+}
+
 
 export const getPotDsr = async function() {
   const { store } = this.props
@@ -84,7 +95,7 @@ export const getDaiAllowance = async function() {
   const walletAddress = store.get('walletAddress')
   const dai = store.get('daiObject')
   if (!dai || !walletAddress) return
-  const daiAllowance = await dai.methods.allowance(walletAddress, mgrAddress).call()
+  const daiAllowance = await dai.methods.allowance(walletAddress, config.MANAGER).call()
   store.set('daiAllowance', new WadDecimal(daiAllowance).div('1e18'))
 }
 
@@ -93,7 +104,8 @@ export const getDeurAllowance = async function() {
   const walletAddress = store.get('walletAddress')
   const deur = store.get('deurObject')
   if (!deur || !walletAddress) return
-  const deurAllowance = await deur.methods.allowance(walletAddress, mgrAddress).call()
+  const deurAllowance = await deur.methods.allowance(walletAddress, config.MANAGER).call()
+  store.set('deurAllowanceRaw', deurAllowance)
   store.set('deurAllowance', new WadDecimal(deurAllowance).div('1e18'))
 }
 
@@ -126,7 +138,7 @@ export const getChaiBalance = async function() {
 }
 
 
-
+// TODO
 // Why not get all token balances we need in one function?
 export const getDeurBalance = async function() {
   const { store } = this.props
@@ -138,7 +150,7 @@ export const getDeurBalance = async function() {
     const balanceDecimal = new WadDecimal(balanceRaw)
     store.set(name + 'BalanceRaw', balanceRaw)
     store.set(name + 'BalanceDecimal', balanceDecimal)
-    store.set(name + 'Balance', balanceDecimal.div('1e18').toFormat(5)) 
+    store.set(name + 'Balance', balanceDecimal.div('1e18').toFormat(3))
     //console.log(balanceDecimal.div('1e18').toFormat(5)) 
   }
 
@@ -167,14 +179,33 @@ export const getChaiTotalSupply = async function() {
   store.set('chaiTotalSupply', toDai.bind(this)(chaiTotalSupplyDecimal))
 }
 
+// TODO reformat
+// Gets ALL relevant total supplies 
 export const getDeurTotalSupply = async function() {
   const { store } = this.props
   // const web3 = store.get('web3')
+    
+  const getERC20TotalSupply = async (contract, name) => {
+    const supplyRaw = await contract.methods.totalSupply().call()   
+    const supplyDecimal = new WadDecimal(supplyRaw)
+    store.set(name + 'TotalSupplyRaw', supplyRaw)
+    store.set(name + 'TotalSupplyDecimal', supplyDecimal)
+    store.set(name + 'TotalSupply', supplyDecimal.div('1e18').toFormat(3)) 
+    //console.log(balanceDecimal.div('1e18').toFormat(5)) 
+  }
+  
   const deur = store.get('deurObject')
-  if (!deur) return
-  const deurTotalSupplyRaw = await deur.methods.totalSupply().call()
-  const deurTotalSupplyDecimal = new WadDecimal(deurTotalSupplyRaw).div('1e18')
-  store.set('deurTotalSupply', deurTotalSupplyDecimal)
+  if (deur) await getERC20TotalSupply(deur, 'deur')     
+  
+  const dank = store.get('dankObject')
+  if (dank) await getERC20TotalSupply(dank, 'dank') 
+
+  const daidankUni = store.get('daidankUniObject')
+  if (daidankUni) await getERC20TotalSupply(daidankUni, 'daidank') 
+
+  const daideurUni = store.get('daideurUniObject')
+  if (daideurUni) await getERC20TotalSupply(daideurUni, 'daideur') 
+ 
 }
 
 export const toDeur = function(daiAmount) {
@@ -206,19 +237,22 @@ export const toDai = function(deurAmount) {
 export const setupContracts = function () {
     const { store } = this.props
     const web3 = store.get('web3')
+
+
     //Manager
-    store.set('mgrObject', new web3.eth.Contract(managerABI, mgrAddress))
+    store.set('mgrObject', new web3.eth.Contract(managerABI, config.MANAGER))
     // ERC20
-    store.set('potObject', new web3.eth.Contract(potABI, potAddress))
-    store.set('daiObject', new web3.eth.Contract(daiABI, daiAddress))
-    store.set('chaiObject', new web3.eth.Contract(chaiABI, chaiAddress))
-    store.set('deurObject', new web3.eth.Contract(deurABI, deurAddress))
-    store.set('dankObject', new web3.eth.Contract(dankABI, dankAddress))
+    store.set('potObject', new web3.eth.Contract(potABI, config.MCD_POT))
+    store.set('daiObject', new web3.eth.Contract(erc20, config.MCD_DAI))
+    store.set('chaiObject', new web3.eth.Contract(chaiABI, config.CHAI))
+    store.set('deurObject', new web3.eth.Contract(erc20, config.DEUR))
+    store.set('dankObject', new web3.eth.Contract(erc20, config.DANK))
     // Uniswap Pools
-    store.set('daidankUniObject', new web3.eth.Contract(UniPoolABI, daiDankUniAddress))
-    store.set('daideurUniObject', new web3.eth.Contract(UniPoolABI, daiDeurUniAddress))
+    store.set('daidankUniObject', new web3.eth.Contract(UniPoolABI, config.UNIV2P_DAI_DANK))
+    store.set('daideurUniObject', new web3.eth.Contract(UniPoolABI, config.UNIV2P_DAI_DEUR))
     // Internal Staking Pools
-    store.set('poolObject', new web3.eth.Contract(poolABI, poolAddress))
+    store.set('dankpoolObject', new web3.eth.Contract(poolABI, config.DANKPOOL))
+    store.set('deurpoolObject', new web3.eth.Contract(poolABI, config.DEURPOOL))
 }
 
 export const getData = async function() {
@@ -255,9 +289,10 @@ export const initBrowserWallet = async function(prompt) {
             console.error("User denied account access")
         }
 
-        window.ethereum.on('accountsChanged', (accounts) => {
+        window.ethereum.on('chainChanged', () => {
             initBrowserWallet.bind(this)()
         })
+
     }
     // Legacy dApp browsers...
     else if (window.web3) {

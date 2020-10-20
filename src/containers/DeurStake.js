@@ -67,8 +67,9 @@ class DeurStakeContainer extends React.Component {
 
     setMax() {
         const { store } = this.props
-        const deurBalanceDecimal = store.get('deurBalanceDecimal')
-        store.set('stakeAmount', deurBalanceDecimal)
+        const id = this.event.id
+        const balance = store.get('dai' + id  + 'Balance')
+        store.set(id + 'stakeAmount', balance) //TODO
     }
 
     handleInput(event) {
@@ -83,7 +84,7 @@ class DeurStakeContainer extends React.Component {
                 return
             }
         }
-        store.set('stakeAmount', value)
+        store.set(event.target.id + 'StakeAmount', value)
     }
 
     render() {
@@ -101,7 +102,8 @@ class DeurStakeContainer extends React.Component {
         const walletAddress = store.get('walletAddress')
         // const web3 = store.get('web3')
         const isSignedIn = walletAddress && walletAddress.length
-        const stakeAmount = store.get('stakeAmount')
+        const dankStakeAmount = store.get('dankStakeAmount')
+        const deurStakeAmount = store.get('deurStakeAmount')
         // const deurBalanceDecimal = store.get('deurBalanceDecimal')
         // const canExit = stakeAmount && (stakeAmount.cmp(deurBalanceDecimal) < 1)
         const canExit = true
@@ -127,6 +129,7 @@ class DeurStakeContainer extends React.Component {
          * ];
          */
         const pools = [{
+            id: 'dank',
             img: '',
             symbol: 'DAI-DANK',
             lpSize: 0,
@@ -134,7 +137,8 @@ class DeurStakeContainer extends React.Component {
             stakedAmount: 0.1,
             walletBalance: daidankBalance? daidankBalance : 0,
             tokenAddress: '',
-            tokenContract: ''
+            tokenContract: '',
+            stakeAmount: dankStakeAmount? dankStakeAmount : ''
         }, {
         //     img: '',
         //     symbol: 'USDC',
@@ -144,6 +148,7 @@ class DeurStakeContainer extends React.Component {
         //     tokenAddress: '',
         //     tokenContract: ''
         // }, {
+            id: 'deur',
             img: '',
             symbol: 'DAI-DEUR',
             lpSize: 0,
@@ -151,7 +156,8 @@ class DeurStakeContainer extends React.Component {
             stakedAmount: 0.1,
             walletBalance: daideurBalance? daideurBalance : 0,
             tokenAddress: '',
-            tokenContract: ''
+            tokenContract: '',
+            stakeAmount: deurStakeAmount? deurStakeAmount : ''
         // }, {
         //     img: '',
         //     symbol: 'DEUR-USDC',
@@ -238,8 +244,8 @@ class DeurStakeContainer extends React.Component {
 
               {/* Amount Action */}
               <Grid item xs={7} sm={4} md={3} className={classes.numCol}>
-                  <TextField label="Stake Amount" placeholder='0' className={classes.input} variant="outlined" value={stakeAmount.toString() !== "0" ? stakeAmount : ''} type="number" 
-                      // onChange={this.handleInput.bind(this)} 
+                  <TextField id={tile.id} label='Stake Amount' placeholder='0' className={classes.input} variant="outlined" value={tile.stakeAmount.toString()} type="number" 
+                       onChange={this.handleInput.bind(this)} 
                       // InputProps={{ inputProps: { min: 0 },
                       //       endAdornment: <InputAdornment className={classes.endAdornment} position="end">DEUR</InputAdornment>
                       //               }}
@@ -267,13 +273,11 @@ class DeurStakeContainer extends React.Component {
 
 
         {/* <Box> */}<br/>
-        <br/><br/><br/>
                     <Button color='primary'
                         size='large'
                         onClick={() => {
                             this.stake()
-                        }} variant="contained" disabled={!isSignedIn || !canExit} className={classes.actionButton}>
-                       Stake DEUR
+                        }} variant="contained" disabled={!isSignedIn || !canExit} className={classes.actionButton}> Stake
                     </Button>
                     {/* </Box> */}
         {/* <p>Dai Savings Rate: {dsrPercent ? `${dsrPercent}% per year` : '-'}</p> */}

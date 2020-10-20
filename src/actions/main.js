@@ -1,4 +1,4 @@
-import {  } from '../utils/web3Utils';
+import { approve } from '../utils/web3Utils';
 const log = x => console.log(x)
 
 
@@ -7,23 +7,24 @@ export const exit = async function() {
     const web3 = store.get('web3')
     const deur = store.get('deurObject')
     const mgr = store.get('mgrObject')
-    const exitAmount = store.get('exitAmount').mul(10**18)
+   // const exitAmount = store.get('exitAmount').mul(10**18)
     const walletAddress = store.get('walletAddress')
-    const allowance = store.get('deurAllowance')
-    console.log(walletAddress)
-    const exitBN = new web3.utils.BN(exitAmount.mul('1e18').toString()) 
-    console.log(exitAmount.toString(), allowance.toString());
-    if (exitAmount.cmp(allowance)>0) {
-      await deur.methods.approve(mgr.options.address, exitBN)
-        .send({from: walletAddress})
-    }
-    return mgr.methods.swapdEurtoDAI(exitBN)
+
+    const exitAmount = web3.utils.toWei(store.get('exitAmount').toString(), 'ether')
+    log(exitAmount.toString())
+
+    approve(deur, mgr.options.address, walletAddress, 
+            exitAmount.toString())
+        .then(() => 
+            mgr.methods.swapdEurtoDAI(exitAmount)
               .send({from: walletAddress})
               .once('transactionHash', log) 
               .on('error', log)
               .catch(e => log)
+        )            
      
 }
+
 
 export const join = async function() {
     const { store } = this.props
@@ -32,23 +33,16 @@ export const join = async function() {
     const mgr = store.get('mgrObject')
     const joinAmount = store.get('joinAmount')
     const walletAddress = store.get('walletAddress')
-    const allowance = store.get('daiAllowance')
-//    const joinBN = new web3.utils.BN(joinAmount.mul('1e18').toString()) 
-    console.log(joinAmount)
     const joinBN = web3.utils.toWei(joinAmount.toString(), 'ether')
-    console.log(joinAmount.toString(), allowance.toString());
-    if (joinAmount.cmp(allowance)>0) {
-      await dai.methods.approve(mgr.options.address, joinBN)
-        .send({from: walletAddress})
-    }
-    return mgr.methods.swapDAItodEur(joinBN)
-              .send({from: walletAddress})
-              .once('sending', log)
-              .once('sent', log)
-              .once('transactionHash', log) 
-              .once('receipt', log)
-              .on('error', log)
-              .then(() => log("done"))
+    approve(dai, mgr.options.address, walletAddress, joinBN)
+        .then(() => {
+            return mgr.methods.swapDAItodEur(joinBN)
+                .send({from: walletAddress})
+                .once('transactionHash', log) 
+                .once('receipt', log)
+                .then(() => log("done"))
+        }).catch(e => log(e.message))
+
 }
 
 export const mint = async function() {
@@ -69,22 +63,63 @@ export const mint = async function() {
 }
 
 export const stake = async function() {
-    log("staking.. not coded yet")
     const { store } = this.props
     // const web3 = store.get('web3')
-    const pool = store.get('poolObject')
-    const stakeAmount = store.get('stakeAmount').mul(10**18)
+    
+    const dankStakeAmount = store.get('dankStakeAmount') 
+    const deurStakeAmount = store.get('deurStakeAmount') 
     const walletAddress = store.get('walletAddress')
-    const allowance = store.get('poolAllowance') // which pool tho
-    if (stakeAmount.cmp(allowance)>0) {
-      return pool.methods.approve(pool.options.address, "-1")
-        .send({from: walletAddress})
-        .then(function () {
-          return pool.methods.stake(walletAddress, stakeAmount.toFixed()).send({from: walletAddress})
-        });
+
+    if (dankStakeAmount && (dankStakeAmount.toString() !== "0")) {
+
+        const pool = store.get('dankpoolObject')
+        const daidank = store.get('daidankObject')
+
+        approve(daidank, pool.options.address, walletAddress, 
+                dankStakeAmount.mul('1e18').toString())
+        .then(() => {
+           return pool.methods.stakeTokens(dankStakeAmount.toString())
+                              .send({from: walletAddress})
+        }).catch(e => log);
     }
-    return pool.methods.stake(walletAddress, stakeAmount.toFixed()).send({from: walletAddress})
+
+    if (deurStakeAmount && (deurStakeAmount.toString() !== "0")) {
+
+        const pool = store.get('deurpoolObject')
+        const daideur = store.get('daideurObject')
+
+        approve(daideur, pool.options.address, walletAddress, 
+                deurStakeAmount.toString())
+        .then(() => {
+          return pool.methods.stakeTokens(deurStakeAmount.toString()).send({from: walletAddress})
+        })
+        .catch(e => log);
+    }
 }
+
+
+export const unstake = async function() {
+    // TODO MAYBE DO SOME CHECKS?
+    
+    const { store } = this.props
+    // const web3 = store.get('web3')
+    
+    const walletAddress = store.get('walletAddress')
+
+    const deurpool = store.get('deurpoolObject')
+    const dankpool = store.get('dankpoolObject')
+
+    await deurpool.methods.unstakeTokens()
+                  .send({from: walletAddress})
+                  .catch(e => log);
+
+    await dankpool.methods.unstakeTokens()
+                  .send({from: walletAddress})
+                  .catch(e => log);
+}
+
+
+
 
 export const transfer = async function() {
     const { store } = this.props
