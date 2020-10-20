@@ -129,6 +129,7 @@ class DeurStakeContainer extends React.Component {
         const pools = [{
             img: '',
             symbol: 'DAI-DANK',
+            lpSize: 0,
             apyEst: 0,
             stakedAmount: 0.1,
             walletBalance: daidankBalance? daidankBalance : 0,
@@ -145,6 +146,7 @@ class DeurStakeContainer extends React.Component {
         // }, {
             img: '',
             symbol: 'DAI-DEUR',
+            lpSize: 0,
             apyEst: 0,
             stakedAmount: 0.1,
             walletBalance: daideurBalance? daideurBalance : 0,
@@ -161,6 +163,7 @@ class DeurStakeContainer extends React.Component {
         // }, {
             img: '',
             symbol: 'DANK-DEUR',
+            lpSize: 0,
             apyEst: 0,
             stakedAmount: 0.1,
             walletBalance: 0.111,
@@ -212,7 +215,7 @@ class DeurStakeContainer extends React.Component {
                 <Hidden smDown>
                   {/* LP Size */}
                   <Grid item sm={2} md className={classes.numCol}>
-                      {(tile.apyEst).toFixed(2)}
+                      {(tile.lpSize).toFixed(2)}
                       {/* add Dank token apr */}
                   </Grid>
                   {/* Staked Balance */}
