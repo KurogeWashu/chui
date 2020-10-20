@@ -119,8 +119,6 @@ export const unstake = async function() {
 }
 
 
-
-
 export const transfer = async function() {
     const { store } = this.props
     // const web3 = store.get('web3')

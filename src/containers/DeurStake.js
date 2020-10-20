@@ -7,7 +7,7 @@ import {
     getData
     // , toDai 
 } from '../utils/web3Utils'
-import { stake } from '../actions/main'
+import { stake, unstake } from '../actions/main'
 
 import Card from '@material-ui/core/Card';
 // import CardMedia from '@material-ui/core/CardMedia';
@@ -63,6 +63,10 @@ class DeurStakeContainer extends React.Component {
 
     stake() {
         stake.bind(this)()
+    }
+
+    unstake() {
+        unstake.bind(this)()
     }
 
     setMax() {
@@ -275,13 +279,24 @@ class DeurStakeContainer extends React.Component {
         {/* <Box> */}<br/>
                     <Button color='primary'
                         size='large'
-                        onClick={() => {
-                            this.stake()
-                        }} variant="contained" disabled={!isSignedIn || !canExit} className={classes.actionButton}> Stake
+                        onClick={() => { this.stake()}} 
+                        variant="contained" 
+                        disabled={!isSignedIn || !canExit} 
+                        className={classes.actionButton}>
+                    stake
                     </Button>
+                    
+                    <Button color='primary'
+                        size='large'
+                        onClick={() => { this.unstake()}} 
+                        variant="contained" 
+                        disabled={!isSignedIn || !canExit} 
+                        className={classes.actionButton}>
+                    unstake
+                    </Button>
+
                     {/* </Box> */}
         {/* <p>Dai Savings Rate: {dsrPercent ? `${dsrPercent}% per year` : '-'}</p> */}
-        {/* <a target="_blank" href="/about.html" rel="noopener noreferrer">Learn more</a> */}
         </CardContent></Card>
     }
 }
