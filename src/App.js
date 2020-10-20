@@ -105,7 +105,7 @@ class App extends React.Component {
         return (
             <ThemeProvider theme={theme}>
                 <Container maxWidth="md" alignItems="center">
-                    <Grid container spacing={3}>
+                    <Grid container spacing={3} justify="center">
                         <Grid item xs={12}><br/></Grid>
                         <NavContainer />
 
