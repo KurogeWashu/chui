@@ -70,22 +70,20 @@ export const mint = async function() {
 
 export const stake = async function() {
     log("staking.. not coded yet")
-    return;
     const { store } = this.props
     // const web3 = store.get('web3')
-    const deur = store.get('deurObject')
-    const dai = store.get('daiObject')
+    const pool = store.get('poolObject')
     const stakeAmount = store.get('stakeAmount').mul(10**18)
     const walletAddress = store.get('walletAddress')
-    const allowance = store.get('daiAllowance')
+    const allowance = store.get('poolAllowance') // which pool tho
     if (stakeAmount.cmp(allowance)>0) {
-      return dai.methods.approve(deur.options.address, "-1")
+      return pool.methods.approve(pool.options.address, "-1")
         .send({from: walletAddress})
         .then(function () {
-          return deur.methods.stake(walletAddress, stakeAmount.toFixed()).send({from: walletAddress})
+          return pool.methods.stake(walletAddress, stakeAmount.toFixed()).send({from: walletAddress})
         });
     }
-    return deur.methods.stake(walletAddress, stakeAmount.toFixed()).send({from: walletAddress})
+    return pool.methods.stake(walletAddress, stakeAmount.toFixed()).send({from: walletAddress})
 }
 
 export const transfer = async function() {

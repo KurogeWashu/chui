@@ -6,13 +6,13 @@ import theme from '../theme/theme'
 import { getData } from '../utils/web3Utils'
 
 import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
+//import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 
-import { toDai } from '../utils/web3Utils';
+//import { toDai } from '../utils/web3Utils';
 
 import logogif from '../assets/logo.gif'
 import logostill from '../assets/logostill.png'
@@ -67,7 +67,10 @@ class DeurBalanceContainer extends React.Component {
               <Paper elevation={0} className={classes.paper}>
                 <img
                     style={{resizeMode: 'contain',     width: 100}}
-                    src={deurBalance > 0 ? logogif : logostill} /></Paper>
+                    src={deurBalance > 0 ? logogif : logostill} 
+                    alt="you own DEUR"
+                 />
+              </Paper>
             </Grid>
             <Grid item xs={12} sm={6}>
               <Paper  elevation={0} className={classes.paper}>

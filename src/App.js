@@ -12,10 +12,10 @@ import NavContainer from './containers/Nav'
 import JoinExitContainer from './containers/JoinExit'
 // import ChaiBalanceContainer from './containers/ChaiBalance'
 import DeurBalanceContainer from './containers/DeurBalance'
-import DeurMintContainer from './containers/DeurMint'
+//import DeurMintContainer from './containers/DeurMint'
 import DeurStakeContainer from './containers/DeurStake'
 import TotalSupplyContainer from './containers/TotalSupply'
-import TransferDeurContainer from './containers/TransferDeur'
+//import TransferDeurContainer from './containers/TransferDeur'
 import { 
   // setupContract
   // getData, 

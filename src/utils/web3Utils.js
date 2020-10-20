@@ -7,6 +7,7 @@ import deurABI from '../abi/Deur.json'
 import managerABI from '../abi/Manager.json'
 import dankABI from '../abi/Deur.json' // just erc20
 import UniPoolABI from '../abi/UniPool.json'
+import poolABI from '../abi/Pools.json'
 let Decimal = require('decimal.js-light')
 Decimal = require('toformat')(Decimal)
 
@@ -19,6 +20,7 @@ const mgrAddress = config.MANAGER
 const dankAddress = config.DANK
 const daiDeurUniAddress = config.UNIV2P_DAI_DEUR
 const daiDankUniAddress = config.UNIV2P_DAI_DANK
+const poolAddress = config.DANK // wen Pool tho?
 
 export const WadDecimal = Decimal.clone({
   rounding: 1, // round down
@@ -129,7 +131,6 @@ export const getChaiBalance = async function() {
 export const getDeurBalance = async function() {
   const { store } = this.props
   const walletAddress = store.get('walletAddress')
-  const web3 = store.get('web3')
   if (!walletAddress) return 
 
   const getERC20Balance = async (contract, name) => {
@@ -205,14 +206,19 @@ export const toDai = function(deurAmount) {
 export const setupContracts = function () {
     const { store } = this.props
     const web3 = store.get('web3')
+    //Manager
+    store.set('mgrObject', new web3.eth.Contract(managerABI, mgrAddress))
+    // ERC20
     store.set('potObject', new web3.eth.Contract(potABI, potAddress))
     store.set('daiObject', new web3.eth.Contract(daiABI, daiAddress))
     store.set('chaiObject', new web3.eth.Contract(chaiABI, chaiAddress))
     store.set('deurObject', new web3.eth.Contract(deurABI, deurAddress))
-    store.set('mgrObject', new web3.eth.Contract(managerABI, mgrAddress))
     store.set('dankObject', new web3.eth.Contract(dankABI, dankAddress))
+    // Uniswap Pools
     store.set('daidankUniObject', new web3.eth.Contract(UniPoolABI, daiDankUniAddress))
     store.set('daideurUniObject', new web3.eth.Contract(UniPoolABI, daiDeurUniAddress))
+    // Internal Staking Pools
+    store.set('poolObject', new web3.eth.Contract(poolABI, poolAddress))
 }
 
 export const getData = async function() {
