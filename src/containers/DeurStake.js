@@ -112,6 +112,27 @@ class DeurStakeContainer extends React.Component {
         // const canExit = stakeAmount && (stakeAmount.cmp(deurBalanceDecimal) < 1)
         const canExit = true
 
+        // below is from DeurBalance
+        const der = store.get('der')
+        // const deurBalance = store.get('deurBalance')
+        // const deurBalanceDec = store.get('deurBalanceDecimal')
+        // let deurBdai = der && deurBalanceDec ? deurBalanceDec.mul(der).div('1e18').toFormat(3) : '-'
+        // const dankBalance = store.get('dankBalance')
+        // const dankBalanceDec = store.get('dankBalanceDecimal')
+        // let dankBdai = der && dankBalanceDec ? dankBalanceDec.mul(der).div('1e18').toFormat(3) : '-'
+        // const deurTotalSupply = store.get('deurTotalSupply')
+        // const deurTotalSupplyDec = store.get('deurTotalSupplyDecimal')
+        // let deurTSdai = der && deurTotalSupplyDec ? deurTotalSupplyDec.mul(der).div('1e18').toFormat(2) : '-'
+        // const dankTotalSupply = store.get('dankTotalSupply')
+        // const dankTotalSupplyDec = store.get('deurTotalSupplyDecimal')
+        // let dankTSdai = der && dankTotalSupplyDec ? dankTotalSupplyDec.mul(der).div('1e18').toFormat(2) : '-'
+        // const daidankTotalSupply = store.get('daidankTotalSupply')
+        const daidankTotalSupplyDec = store.get('daidankTotalSupplyDecimal')
+        let daidankTSdai = der && daidankTotalSupplyDec ? daidankTotalSupplyDec.mul(der).div('1e18').toFormat(2) : '-'
+        // const daideurTotalSupply = store.get('daideurTotalSupply')
+        const daideurTotalSupplyDec = store.get('daideurTotalSupplyDecimal')
+        let daideurTSdai = der && daideurTotalSupplyDec ? daideurTotalSupplyDec.mul(der).div('1e18').toFormat(2) : '-'
+
 
         /**
          * The pools data is structured as follows:
@@ -136,13 +157,13 @@ class DeurStakeContainer extends React.Component {
             id: 'dank',
             img: '',
             symbol: 'DAI-DANK',
-            lpSize: 0,
+            lpSize: daidankTSdai ? daidankTSdai : 0,
             apyEst: 0,
-            stakedAmount: 0.1,
-            walletBalance: daidankBalance? daidankBalance : 0,
-            tokenAddress: '',
-            tokenContract: '',
-            stakeAmount: dankStakeAmount? dankStakeAmount : ''
+            stakedAmount: dankStakeAmount ? dankStakeAmount : 0,
+            walletBalance: daidankBalance ? daidankBalance : 0,
+            tokenAddress: '0xD32b1019A20428B49893628FC9deDA2A04A3EB73',
+            tokenContract: '0xA424E3468a093d1f33F64723a71eb33983E8a9fc',
+            stakeAmount: dankStakeAmount ? dankStakeAmount : 0
         }, {
         //     img: '',
         //     symbol: 'USDC',
@@ -155,13 +176,13 @@ class DeurStakeContainer extends React.Component {
             id: 'deur',
             img: '',
             symbol: 'DAI-DEUR',
-            lpSize: 0,
+            lpSize: daideurTSdai ? daideurTSdai : 0,
             apyEst: 0,
-            stakedAmount: 0.1,
-            walletBalance: daideurBalance? daideurBalance : 0,
-            tokenAddress: '',
-            tokenContract: '',
-            stakeAmount: deurStakeAmount? deurStakeAmount : ''
+            stakedAmount: deurStakeAmount ? deurStakeAmount : 0,
+            walletBalance: daideurBalance ? daideurBalance : 0,
+            tokenAddress: '0xD32b1019A20428B49893628FC9deDA2A04A3EB73',
+            tokenContract: '0xda23f3f1cb0bfceeb403f6c045bcc1627d8cb04f',
+            stakeAmount: deurStakeAmount ? deurStakeAmount : 0
         // }, {
         //     img: '',
         //     symbol: 'DEUR-USDC',
@@ -218,14 +239,14 @@ class DeurStakeContainer extends React.Component {
             <Hidden xsDown>
               {/* APR */}
               <Grid item sm={2} md className={classes.numCol}>
-                  {(tile.apyEst).toFixed(2)}
+                  {tile.apyEst}
                   {/* add Dank token apr */}
               </Grid>
 
                 <Hidden smDown>
                   {/* LP Size */}
                   <Grid item sm={2} md className={classes.numCol}>
-                      {(tile.lpSize).toFixed(2)}
+                      {tile.lpSize}
                       {/* add Dank token apr */}
                   </Grid>
                   {/* Staked Balance */}
@@ -234,13 +255,13 @@ class DeurStakeContainer extends React.Component {
                     {/* style={{textTransform: 'none'}} */}
                     {/* onClick={this.setMax.bind(this)} */}
                     {/* >{(deurBalance>0)? deurBalance : '-'}</Button> */}
-                    {(tile.stakedAmount).toFixed(2)}
+                    {tile.stakedAmount}
                   </Grid>
 
                   {/* Unstaked Balance */}
                   {/* TODO: mac balance button */}
                   <Grid item md className={classes.numCol}>
-                      {(tile.walletBalance - tile.stakedAmount).toFixed(2)}
+                      {tile.walletBalance - tile.stakedAmount}
                   </Grid>
                 </Hidden>
             </Hidden>
@@ -248,8 +269,8 @@ class DeurStakeContainer extends React.Component {
 
               {/* Amount Action */}
               <Grid item xs={7} sm={4} md={3} className={classes.numCol}>
-                  <TextField id={tile.id} label='Stake Amount' placeholder='0' className={classes.input} variant="outlined" value={tile.stakeAmount.toString()} type="number" 
-                       onChange={this.handleInput.bind(this)} 
+                  <TextField id={tile.id} label='Stake Amount' placeholder='0' className={classes.input} variant="outlined" value={tile.stakeAmount} type="number" 
+                       onChange={this.handleInput.bind(this)}
                       // InputProps={{ inputProps: { min: 0 },
                       //       endAdornment: <InputAdornment className={classes.endAdornment} position="end">DEUR</InputAdornment>
                       //               }}
