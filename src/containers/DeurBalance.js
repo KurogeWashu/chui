@@ -27,7 +27,7 @@ const styles = () => ({
         marginBottom: theme.spacing(3),
     },
     paper: {
-        padding: theme.spacing(2),
+        // padding: theme.spacing(2),
         textAlign: 'center',
     },
 })
@@ -66,7 +66,7 @@ class DeurBalanceContainer extends React.Component {
             <Grid item xs={12}>
               <Paper elevation={0} className={classes.paper}>
                 <img
-                    style={{resizeMode: 'contain',     width: 150}}
+                    style={{resizeMode: 'contain',     width: 250}}
                     src={deurBalance > 0 ? logogif : logostill} 
                     alt="you own DEUR"
                  />

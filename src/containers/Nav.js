@@ -75,10 +75,10 @@ class NavContainer extends React.Component {
                  open={
                    network !== config.network }
               >
-              <DialogTitle id="alert-dialog-title">{"Wrong network"}</DialogTitle>
+              <DialogTitle id="alert-dialog-title">{"Unsupported network"}</DialogTitle>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                   <p>Switch to the right network to interact with this app</p>
+                   <p>Please switch to the Kovan - Ethereum testnet to interact with this app.</p>
                 </DialogContentText>
               </DialogContent>
             </Dialog>
