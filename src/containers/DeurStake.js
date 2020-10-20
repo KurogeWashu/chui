@@ -152,7 +152,7 @@ class DeurStakeContainer extends React.Component {
             walletBalance: daideurBalance? daideurBalance : 0,
             tokenAddress: '',
             tokenContract: ''
-        }, {
+        // }, {
         //     img: '',
         //     symbol: 'DEUR-USDC',
         //     apyEst: 0,
@@ -161,14 +161,14 @@ class DeurStakeContainer extends React.Component {
         //     tokenAddress: '',
         //     tokenContract: ''
         // }, {
-            img: '',
-            symbol: 'DANK-DEUR',
-            lpSize: 0,
-            apyEst: 0,
-            stakedAmount: 0.1,
-            walletBalance: 0.111,
-            tokenAddress: '',
-            tokenContract: ''
+            // img: '',
+            // symbol: 'DANK-DEUR',
+            // lpSize: 0,
+            // apyEst: 0,
+            // stakedAmount: 0.1,
+            // walletBalance: 0.111,
+            // tokenAddress: '',
+            // tokenContract: ''
         }
         ];
 
