@@ -104,7 +104,7 @@ class App extends React.Component {
         const classes = this.props.classes
         return (
             <ThemeProvider theme={theme}>
-                <Container maxWidth="md">
+                <Container maxWidth="md" alignItems="center">
                     <Grid container spacing={3}>
                         <Grid item xs={12}><br/></Grid>
                         <NavContainer />
@@ -113,15 +113,15 @@ class App extends React.Component {
                         <Grid item xs={12} md={12}>
                             <DeurBalanceContainer />
                         </Grid>
+                        <Grid item xs={12} md={12}>
+                          <DeurStakeContainer />
+                        </Grid>
                         <Grid item xs={12} md={6}>
                             <JoinExitContainer />
                         </Grid>
                         {/* <Grid item xs={12} md={6}> */}
                         {/*   <TransferDeurContainer /> */}
                         {/* </Grid> */}
-                        <Grid item xs={12} md={12}>
-                          <DeurStakeContainer />
-                        </Grid>
                         {/* <Grid item xs={12} md={6}> */}
                         {/*   <AllowanceContainer /> */}
                         {/* </Grid> */}

@@ -33,17 +33,19 @@ const styles = () => ({
       fontSize: '12pt'
     },
     logo: {
-        height: 150,
+        height: 123,
         display:'inline-block',
         float:'left',
         marginTop:'-50px',
-        marginRight: theme.spacing(1)
+        marginRight: theme.spacing(1),
+        padding: '2em'
     },
     accountItem: {
       float: 'right',
     },
     accountButton: {
       float: 'right',
+      color: 'white',
       '& svg': {
         marginRight: theme.spacing(1)
       }

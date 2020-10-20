@@ -11,6 +11,9 @@ export default createMuiTheme({
         },
         secondary: grey,
     },
+    shape:{
+        borderRadius: '15px',
+    },
     overrides: {
         // Style sheet name ⚛️
         // MuiButton: {
