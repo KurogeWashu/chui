@@ -163,50 +163,49 @@ class JoinExitContainer extends React.Component {
                     <Button className={classes.addDenomination}
                             variant="outlined"
                             style={{textTransform: 'none'}}
-                            onClick={this.addAmount.bind(this,5)}
-                            >+€5</Button></Grid>
+                            onClick={this.addAmount.bind(this,toDai.bind(this)(web3.utils.toWei(String(5))))}
+                            >&#11014;€5</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
                             variant="outlined"
                             style={{textTransform: 'none'}}
-                            onClick={this.addAmount.bind(this,10)}
-                            >+€10</Button></Grid>
+                            onClick={this.addAmount.bind(this,toDai.bind(this)(web3.utils.toWei(String(10))))}
+                            >&#11014;€10</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
                             variant="outlined"
                             style={{textTransform: 'none'}}
-                            onClick={this.addAmount.bind(this,20)}
-                            >+€20</Button></Grid>
+                            onClick={this.addAmount.bind(this,toDai.bind(this)(web3.utils.toWei(String(20))))}
+                            >&#11014;€20</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
                             variant="outlined"
                             style={{textTransform: 'none'}}
-                            onClick={this.addAmount.bind(this,50)}
-                            >+€50</Button></Grid>
+                            onClick={this.addAmount.bind(this,toDai.bind(this)(web3.utils.toWei(String(50))))}
+                            >&#11014;€50</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
                             variant="outlined"
                             style={{textTransform: 'none'}}
-                            onClick={this.addAmount.bind(this,100)}
-                            >+€100</Button></Grid>
+                            onClick={this.addAmount.bind(this,toDai.bind(this)(web3.utils.toWei(String(100))))}
+                            >&#11014;€100</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
                             variant="outlined"
                             style={{textTransform: 'none'}}
-                            onClick={this.addAmount.bind(this,200)}
-                            >+€200</Button></Grid>
+                            onClick={this.addAmount.bind(this,toDai.bind(this)(web3.utils.toWei(String(200))))}
+                            >&#11014;€200</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
                             variant="outlined"
                             style={{textTransform: 'none'}}
-                            onClick={this.addAmount.bind(this,500)}
-                            >+€500</Button></Grid>
+                            onClick={this.addAmount.bind(this,toDai.bind(this)(web3.utils.toWei(String(500))))}
+                            >&#11014;€500</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
-                            variant="outlined"
-                            style={{textTransform: 'none'}}
+                            style={{textTransform: 'none', fontSize: '1.35em', padding: '0'}}
                             onClick={this.addAmount.bind(this,0)}
-                            >clear</Button></Grid>
+                            >&#9003;</Button></Grid>
                           </Grid>
                             <br/>
 
@@ -216,10 +215,19 @@ class JoinExitContainer extends React.Component {
                   onClick={this.setMax.bind(this)}
                     >{daiBalance ? `Balance: ${daiBalance} DAI` : '-'}</Button>
 
-                    <TextField label="DAI Amount" placeholder='0' className={classes.input} value={joinAmount.toString() !== "0" ? joinAmount : ''} margin="normal" variant="outlined" type="number" onChange={this.handleInput.bind(this)} InputProps={{ inputProps: { min: 0 },
+                    <TextField label="Transfer Amount" placeholder='0' className={classes.input} value={joinAmount.toString() !== "0" ? joinAmount : ''} margin="normal" variant="outlined" type="number" onChange={this.handleInput.bind(this)}  step="5"
+                        InputProps={{ inputProps: { min: 0 },
                                             endAdornment: <InputAdornment className={classes.endAdornment} position="end">DAI</InputAdornment>
                                         }}
-                  helperText={(isSignedIn && joinAmount) ? "You will receive approximately " + toDeur.bind(this)(web3.utils.toWei(String(joinAmount))) + " DEUR": " "}
+                    />
+
+
+
+                    <TextField disabled label="Receive" placeholder='0' className={classes.input} margin="normal" variant="outlined" 
+                        value={(joinAmount.toString() !== "0")  ? toDeur.bind(this)(web3.utils.toWei(String(joinAmount))): '' } type="number" 
+                        InputProps={{ inputProps: { min: 0 },
+                                    endAdornment: <InputAdornment className={classes.endAdornment} position="end">DEUR</InputAdornment>
+                                    }}
                     />
                         <Button color='primary'
                             size='large'
@@ -238,49 +246,48 @@ class JoinExitContainer extends React.Component {
                             variant="outlined"
                             style={{textTransform: 'none'}}
                             onClick={this.addAmount.bind(this,5)}
-                            >+€5</Button></Grid>
+                            >&#11015;€5</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
                             variant="outlined"
                             style={{textTransform: 'none'}}
                             onClick={this.addAmount.bind(this,10)}
-                            >+€10</Button></Grid>
+                            >&#11015;€10</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
                             variant="outlined"
                             style={{textTransform: 'none'}}
                             onClick={this.addAmount.bind(this,20)}
-                            >+€20</Button></Grid>
+                            >&#11015;€20</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
                             variant="outlined"
                             style={{textTransform: 'none'}}
                             onClick={this.addAmount.bind(this,50)}
-                            >+€50</Button></Grid>
+                            >&#11015;€50</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
                             variant="outlined"
                             style={{textTransform: 'none'}}
                             onClick={this.addAmount.bind(this,100)}
-                            >+€100</Button></Grid>
+                            >&#11015;€100</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
                             variant="outlined"
                             style={{textTransform: 'none'}}
                             onClick={this.addAmount.bind(this,200)}
-                            >+€200</Button></Grid>
+                            >&#11015;€200</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
                             variant="outlined"
                             style={{textTransform: 'none'}}
                             onClick={this.addAmount.bind(this,500)}
-                            >+€500</Button></Grid>
+                            >&#11015;€500</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
-                            variant="outlined"
                             style={{textTransform: 'none'}}
                             onClick={this.addAmount.bind(this,0)}
-                            >clear</Button></Grid>
+                            >&#9003;</Button></Grid>
                           </Grid>
                             <br/>
                     <Button className={classes.accountBalance}
@@ -289,17 +296,26 @@ class JoinExitContainer extends React.Component {
                             >{deurBalance? `Balance: ${deurBalance} DEUR` : '-'}</Button>
 
 
-                    <TextField label="DEUR Amount" placeholder='0' className={classes.input} margin="normal" variant="outlined" value={exitAmount.toString() !== "0" ? exitAmount : ''} type="number" onChange={this.handleInput.bind(this)} InputProps={{ inputProps: { min: 0 },
-                                        endAdornment: <InputAdornment className={classes.endAdornment} position="end">DEUR</InputAdornment>
+                    <TextField label="DEUR Amount" placeholder='0' className={classes.input} margin="normal" variant="outlined" 
+                        value={exitAmount.toString() !== "0" ? exitAmount : ''} type="number" 
+                        onChange={this.handleInput.bind(this)} step="5"
+                        InputProps={{ inputProps: { min: 0 },
+                                endAdornment: <InputAdornment className={classes.endAdornment} position="end">DEUR</InputAdornment>
                                     }}
-                  helperText={(isSignedIn && exitAmount) ? "You will receive approximately " + toDai.bind(this)(web3.utils.toWei(String(exitAmount))) + " Dai": " "}
+                    />
+
+                    <TextField disabled label="DAI Amount" placeholder='0' className={classes.input} margin="normal" variant="outlined" 
+                        value={(exitAmount.toString() !== "0")  ? toDai.bind(this)(web3.utils.toWei(String(exitAmount))): '' } type="number" 
+                        InputProps={{ inputProps: { min: 0 },
+                                        endAdornment: <InputAdornment className={classes.endAdornment} position="end">DAI</InputAdornment>
+                                    }}
                     />
                     <Button color='primary'
                         size='large'
                         onClick={() => {
                             this.exit()
                         }} variant="contained" disabled={!isSignedIn || !canExit} className={classes.actionButton}>
-                       Convert
+                       Swap
                     </Button>
               </Box>
           </CardContent></Card>
