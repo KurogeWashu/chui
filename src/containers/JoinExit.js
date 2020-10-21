@@ -54,7 +54,7 @@ class JoinExitContainer extends React.Component {
         setInterval(() => {
             getData.bind(this)()
         }, 10 * 1000)
-        await toDai.bind(this)(1)
+        // await toDai.bind(this)(1)
     }
 
     join() {
