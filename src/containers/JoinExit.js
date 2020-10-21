@@ -164,43 +164,43 @@ class JoinExitContainer extends React.Component {
                             variant="outlined"
                             style={{textTransform: 'none'}}
                             onClick={this.addAmount.bind(this,toDai.bind(this)(web3.utils.toWei(String(5))))}
-                            >&#11014;€5</Button></Grid>
+                            >&#11014;&nbsp;€5</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
                             variant="outlined"
                             style={{textTransform: 'none'}}
                             onClick={this.addAmount.bind(this,toDai.bind(this)(web3.utils.toWei(String(10))))}
-                            >&#11014;€10</Button></Grid>
+                            >&#11014;&nbsp;€10</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
                             variant="outlined"
                             style={{textTransform: 'none'}}
                             onClick={this.addAmount.bind(this,toDai.bind(this)(web3.utils.toWei(String(20))))}
-                            >&#11014;€20</Button></Grid>
+                            >&#11014;&nbsp;€20</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
                             variant="outlined"
                             style={{textTransform: 'none'}}
                             onClick={this.addAmount.bind(this,toDai.bind(this)(web3.utils.toWei(String(50))))}
-                            >&#11014;€50</Button></Grid>
+                            >&#11014;&nbsp;€50</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
                             variant="outlined"
                             style={{textTransform: 'none'}}
                             onClick={this.addAmount.bind(this,toDai.bind(this)(web3.utils.toWei(String(100))))}
-                            >&#11014;€100</Button></Grid>
+                            >&#11014;&nbsp;€100</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
                             variant="outlined"
                             style={{textTransform: 'none'}}
                             onClick={this.addAmount.bind(this,toDai.bind(this)(web3.utils.toWei(String(200))))}
-                            >&#11014;€200</Button></Grid>
+                            >&#11014;&nbsp;€200</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
                             variant="outlined"
                             style={{textTransform: 'none'}}
                             onClick={this.addAmount.bind(this,toDai.bind(this)(web3.utils.toWei(String(500))))}
-                            >&#11014;€500</Button></Grid>
+                            >&#11014;&nbsp;€500</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
                             style={{textTransform: 'none', fontSize: '1.35em', padding: '0'}}
@@ -246,46 +246,46 @@ class JoinExitContainer extends React.Component {
                             variant="outlined"
                             style={{textTransform: 'none'}}
                             onClick={this.addAmount.bind(this,5)}
-                            >&#11015;€5</Button></Grid>
+                            >&#11015;&nbsp;€5</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
                             variant="outlined"
                             style={{textTransform: 'none'}}
                             onClick={this.addAmount.bind(this,10)}
-                            >&#11015;€10</Button></Grid>
+                            >&#11015;&nbsp;€10</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
                             variant="outlined"
                             style={{textTransform: 'none'}}
                             onClick={this.addAmount.bind(this,20)}
-                            >&#11015;€20</Button></Grid>
+                            >&#11015;&nbsp;€20</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
                             variant="outlined"
                             style={{textTransform: 'none'}}
                             onClick={this.addAmount.bind(this,50)}
-                            >&#11015;€50</Button></Grid>
+                            >&#11015;&nbsp;€50</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
                             variant="outlined"
                             style={{textTransform: 'none'}}
                             onClick={this.addAmount.bind(this,100)}
-                            >&#11015;€100</Button></Grid>
+                            >&#11015;&nbsp;€100</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
                             variant="outlined"
                             style={{textTransform: 'none'}}
                             onClick={this.addAmount.bind(this,200)}
-                            >&#11015;€200</Button></Grid>
+                            >&#11015;&nbsp;€200</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
                             variant="outlined"
                             style={{textTransform: 'none'}}
                             onClick={this.addAmount.bind(this,500)}
-                            >&#11015;€500</Button></Grid>
+                            >&#11015;&nbsp;€500</Button></Grid>
                     <Grid item xs={4} sm={3}>
                     <Button className={classes.addDenomination}
-                            style={{textTransform: 'none'}}
+                            style={{textTransform: 'none', fontSize: '1.35em', padding: '0'}}
                             onClick={this.addAmount.bind(this,0)}
                             >&#9003;</Button></Grid>
                           </Grid>
