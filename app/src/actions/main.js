@@ -46,8 +46,8 @@ export const join = async function() {
 }
 
 export const mint = async function() {
+    // TODO OBSOLETE, NOT NEEDED
     const { store } = this.props
-    const web3 = store.get('web3')
     const deur = store.get('deurObject')
     const mintAmount = store.get('mintAmount').mul(10**18)
     const walletAddress = store.get('walletAddress')
@@ -56,8 +56,8 @@ export const mint = async function() {
     // then update balance etc
     return deur.methods.mint(walletAddress, mintAmount.toFixed()).send(
         {from: walletAddress,
-        value: 0,
-        gasPrice: web3.utils.toWei("11", "gwei"), //not needed?
+      //  value: 0,
+      //  gasPrice: web3.utils.toWei("11", "gwei"), //not needed?
         //gas: 500000 // Gas limit??
               })
 }
@@ -134,5 +134,6 @@ export default {
     exit,
     mint,
     stake,
+    unstake,
     transfer,
 }
