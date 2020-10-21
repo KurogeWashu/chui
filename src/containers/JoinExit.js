@@ -223,7 +223,7 @@ class JoinExitContainer extends React.Component {
 
 
 
-                    <TextField disabled label="Receive" placeholder='0' className={classes.input} margin="normal" variant="outlined" 
+                    <TextField disabled label="Receive Amount" placeholder='0' className={classes.input} margin="normal" variant="outlined" 
                         value={(joinAmount.toString() !== "0")  ? toDeur.bind(this)(web3.utils.toWei(String(joinAmount))): '' } type="number" 
                         InputProps={{ inputProps: { min: 0 },
                                     endAdornment: <InputAdornment className={classes.endAdornment} position="end">DEUR</InputAdornment>
@@ -234,7 +234,7 @@ class JoinExitContainer extends React.Component {
                             onClick={() => {
                                 this.join()
                             }} variant="contained" disabled={!isSignedIn || !canJoin} className={classes.actionButton}>
-                            Convert
+                            Swap
                         </Button>
                   </Box>
                   <Box hidden={joinexitAction !== 1}>
@@ -296,7 +296,7 @@ class JoinExitContainer extends React.Component {
                             >{deurBalance? `Balance: ${deurBalance} DEUR` : '-'}</Button>
 
 
-                    <TextField label="DEUR Amount" placeholder='0' className={classes.input} margin="normal" variant="outlined" 
+                    <TextField label="Transfer Amount" placeholder='0' className={classes.input} margin="normal" variant="outlined" 
                         value={exitAmount.toString() !== "0" ? exitAmount : ''} type="number" 
                         onChange={this.handleInput.bind(this)} step="5"
                         InputProps={{ inputProps: { min: 0 },
@@ -304,7 +304,7 @@ class JoinExitContainer extends React.Component {
                                     }}
                     />
 
-                    <TextField disabled label="DAI Amount" placeholder='0' className={classes.input} margin="normal" variant="outlined" 
+                    <TextField disabled label="Receive Amount" placeholder='0' className={classes.input} margin="normal" variant="outlined" 
                         value={(exitAmount.toString() !== "0")  ? toDai.bind(this)(web3.utils.toWei(String(exitAmount))): '' } type="number" 
                         InputProps={{ inputProps: { min: 0 },
                                         endAdornment: <InputAdornment className={classes.endAdornment} position="end">DAI</InputAdornment>
