@@ -132,7 +132,8 @@ class DeurStakeContainer extends React.Component {
         // const daideurTotalSupply = store.get('daideurTotalSupply')
         const daideurTotalSupplyDec = store.get('daideurTotalSupplyDecimal')
         let daideurTSdai = der && daideurTotalSupplyDec ? daideurTotalSupplyDec.mul(der).div('1e18').toFormat(2) : '-'
-
+        const dankAPY = (((1+(50000/((daidankTSdai ? daidankTSdai : 0)*2))/52)**52-1)/10000000000000000)
+        const deurAPY = (((1+(50000/((daideurTSdai ? daideurTSdai : 0)*2))/52)**52-1)/10000000000000000)
 
         /**
          * The pools data is structured as follows:
@@ -151,14 +152,17 @@ class DeurStakeContainer extends React.Component {
          *   {
          *     [etc...]
          *   },
-         * ];
+         * ]; 
          */
+
+        // APY = ((1+(100000(daidankTSdai*2))/52)**52-1)*100
+        // APY = (toDeur.bind(this)(web3.utils.toWei(String(daidankTSdai)))*2*100000*52)/daidankTSdai
         const pools = [{
             id: 'dank',
             img: '',
             symbol: 'DAI-DANK',
             lpSize: daidankTSdai ? daidankTSdai : 0,
-            apyEst: 0,
+            apyEst: dankAPY ? dankAPY : 0,
             stakedAmount: dankStakeAmount ? dankStakeAmount : 0,
             walletBalance: daidankBalance ? daidankBalance : 0,
             tokenAddress: '0xD32b1019A20428B49893628FC9deDA2A04A3EB73',
@@ -177,7 +181,7 @@ class DeurStakeContainer extends React.Component {
             img: '',
             symbol: 'DAI-DEUR',
             lpSize: daideurTSdai ? daideurTSdai : 0,
-            apyEst: 0,
+            apyEst: deurAPY ? deurAPY : 0,
             stakedAmount: deurStakeAmount ? deurStakeAmount : 0,
             walletBalance: daideurBalance ? daideurBalance : 0,
             tokenAddress: '0xD32b1019A20428B49893628FC9deDA2A04A3EB73',
@@ -246,7 +250,7 @@ class DeurStakeContainer extends React.Component {
                 <Hidden smDown>
                   {/* LP Size */}
                   <Grid item sm={2} md className={classes.numCol}>
-                      {tile.lpSize}
+                      {tile.lpSize} %
                       {/* add Dank token apr */}
                   </Grid>
                   {/* Staked Balance */}
