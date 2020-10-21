@@ -6,10 +6,10 @@
   "DANK": "0xD32b1019A20428B49893628FC9deDA2A04A3EB73",
   "DANKPOOL": "0xD32b1019A20428B49893628FC9deDA2A04A3EB73",
   "DEURPOOL": "0xD32b1019A20428B49893628FC9deDA2A04A3EB73",
-  "UNIV2P_DAI_DANK": "0xA424E3468a093d1f33F64723a71eb33983E8a9fc",
-  "UNIV2P_DAI_DEUR": "0xda23f3f1cb0bfceeb403f6c045bcc1627d8cb04f",
+  "UNIV2P_DAI_DANK": "0xD836F5C45b7004CDB2360AAaC1e3e9c2DC26e489",
+  "UNIV2P_DAI_DEUR": "0xeB2218f201B969651132ade7A51316C140D0cb74",
   "MANAGER": "0xD0c8150C71326e799f2C4033274128E0CE2936c4",
-  "efaultWeb3Provider": "https://kovan.infura.io/v3/8facbab2998b411ea0cef95ae90b66f1",
-  "defaultWeb3Provider": "https://kovan.infura.io/v3/7aef3f0cd1f64408b163814b22cc643c",
+  "defaultWeb3Provider": "https://kovan.infura.io/v3/8facbab2998b411ea0cef95ae90b66f1",
+  "efaultWeb3Provider": "https://kovan.infura.io/v3/7aef3f0cd1f64408b163814b22cc643c",
   "network": 42
 }
