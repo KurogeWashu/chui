@@ -16,6 +16,7 @@ import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import InputAdornment from '@material-ui/core/InputAdornment'
+import Grid from '@material-ui/core/Grid';
 
 const styles = () => ({
    card: {
@@ -33,7 +34,14 @@ const styles = () => ({
     accountBalance: {
         float: 'right',
     },
+    addDenomination: {
+      margin: '10px', 
+      width:'90%',
+      borderRadius: 0
+    },
 })
+
+let oneDeur = 1
 
 class JoinExitContainer extends React.Component {
     async componentDidMount() {
@@ -46,6 +54,7 @@ class JoinExitContainer extends React.Component {
         setInterval(() => {
             getData.bind(this)()
         }, 10 * 1000)
+        await toDai.bind(this)(1)
     }
 
     join() {
@@ -65,6 +74,25 @@ class JoinExitContainer extends React.Component {
       } else {
         const deurBalanceDecimal = store.get('deurBalanceDecimal')
         store.set('exitAmount', deurBalanceDecimal)
+      }
+    }
+
+
+    toFixed(num, precision) {
+        return (+(Math.round(+(num + 'e' + precision)) + 'e' + -precision)).toFixed(precision);
+    }
+
+
+    addAmount(amount) {
+      const {store} = this.props
+      const action = store.get('joinexitAction')
+      if (action === 0) {
+        console.log(oneDeur)
+        const newValue = (amount>0) ? (store.get('joinAmount').add(amount*oneDeur)) : (store.get('joinAmount').mul(0))
+        store.set('joinAmount', newValue)
+      } else {
+        const newValue = (amount>0) ? (store.get('exitAmount').add(amount)) : (store.get('exitAmount').mul(0))
+        store.set('exitAmount', newValue)
       }
     }
 
@@ -107,8 +135,8 @@ class JoinExitContainer extends React.Component {
         const web3 = store.get('web3')
         const isSignedIn = walletAddress && walletAddress.length
 
-        const canJoin = joinAmount && (joinAmount.cmp(daiBalanceDecimal) < 1)
-        const canExit = exitAmount && (exitAmount.cmp(deurBalanceDecimal) < 1)
+        const canJoin = joinAmount && (joinAmount -(daiBalanceDecimal) < 1)
+        const canExit = exitAmount && (exitAmount -(deurBalanceDecimal) < 1)
         // const canExit = true
 
         const joinexitAction = store.get('joinexitAction')
@@ -130,11 +158,64 @@ class JoinExitContainer extends React.Component {
                   <Box hidden={joinexitAction !== 0}> 
                     <Typography variant='subtitle1' align="center">DAI &#8594; DEUR</Typography><br/>
 
+                    <Grid container>
+                    <Grid item xs={4} sm={3}>
+                    <Button className={classes.addDenomination}
+                            variant="outlined"
+                            style={{textTransform: 'none'}}
+                            onClick={this.addAmount.bind(this,5)}
+                            >+€5</Button></Grid>
+                    <Grid item xs={4} sm={3}>
+                    <Button className={classes.addDenomination}
+                            variant="outlined"
+                            style={{textTransform: 'none'}}
+                            onClick={this.addAmount.bind(this,10)}
+                            >+€10</Button></Grid>
+                    <Grid item xs={4} sm={3}>
+                    <Button className={classes.addDenomination}
+                            variant="outlined"
+                            style={{textTransform: 'none'}}
+                            onClick={this.addAmount.bind(this,20)}
+                            >+€20</Button></Grid>
+                    <Grid item xs={4} sm={3}>
+                    <Button className={classes.addDenomination}
+                            variant="outlined"
+                            style={{textTransform: 'none'}}
+                            onClick={this.addAmount.bind(this,50)}
+                            >+€50</Button></Grid>
+                    <Grid item xs={4} sm={3}>
+                    <Button className={classes.addDenomination}
+                            variant="outlined"
+                            style={{textTransform: 'none'}}
+                            onClick={this.addAmount.bind(this,100)}
+                            >+€100</Button></Grid>
+                    <Grid item xs={4} sm={3}>
+                    <Button className={classes.addDenomination}
+                            variant="outlined"
+                            style={{textTransform: 'none'}}
+                            onClick={this.addAmount.bind(this,200)}
+                            >+€200</Button></Grid>
+                    <Grid item xs={4} sm={3}>
+                    <Button className={classes.addDenomination}
+                            variant="outlined"
+                            style={{textTransform: 'none'}}
+                            onClick={this.addAmount.bind(this,500)}
+                            >+€500</Button></Grid>
+                    <Grid item xs={4} sm={3}>
+                    <Button className={classes.addDenomination}
+                            variant="outlined"
+                            style={{textTransform: 'none'}}
+                            onClick={this.addAmount.bind(this,0)}
+                            >clear</Button></Grid>
+                          </Grid>
+                            <br/>
+
+
                     <Button variant="text" className={classes.accountBalance}
                   style={{textTransform: 'none'}}
                   onClick={this.setMax.bind(this)}
                     >{daiBalance ? `Balance: ${daiBalance} DAI` : '-'}</Button>
-                    
+
                     <TextField label="DAI Amount" placeholder='0' className={classes.input} value={joinAmount.toString() !== "0" ? joinAmount : ''} margin="normal" variant="outlined" type="number" onChange={this.handleInput.bind(this)} InputProps={{ inputProps: { min: 0 },
                                             endAdornment: <InputAdornment className={classes.endAdornment} position="end">DAI</InputAdornment>
                                         }}
@@ -151,10 +232,61 @@ class JoinExitContainer extends React.Component {
                   <Box hidden={joinexitAction !== 1}>
                     <Typography variant='subtitle1' align="center">DEUR &#8594; DAI</Typography><br/>
 
+                    <Grid container>
+                    <Grid item xs={4} sm={3}>
+                    <Button className={classes.addDenomination}
+                            variant="outlined"
+                            style={{textTransform: 'none'}}
+                            onClick={this.addAmount.bind(this,5)}
+                            >+€5</Button></Grid>
+                    <Grid item xs={4} sm={3}>
+                    <Button className={classes.addDenomination}
+                            variant="outlined"
+                            style={{textTransform: 'none'}}
+                            onClick={this.addAmount.bind(this,10)}
+                            >+€10</Button></Grid>
+                    <Grid item xs={4} sm={3}>
+                    <Button className={classes.addDenomination}
+                            variant="outlined"
+                            style={{textTransform: 'none'}}
+                            onClick={this.addAmount.bind(this,20)}
+                            >+€20</Button></Grid>
+                    <Grid item xs={4} sm={3}>
+                    <Button className={classes.addDenomination}
+                            variant="outlined"
+                            style={{textTransform: 'none'}}
+                            onClick={this.addAmount.bind(this,50)}
+                            >+€50</Button></Grid>
+                    <Grid item xs={4} sm={3}>
+                    <Button className={classes.addDenomination}
+                            variant="outlined"
+                            style={{textTransform: 'none'}}
+                            onClick={this.addAmount.bind(this,100)}
+                            >+€100</Button></Grid>
+                    <Grid item xs={4} sm={3}>
+                    <Button className={classes.addDenomination}
+                            variant="outlined"
+                            style={{textTransform: 'none'}}
+                            onClick={this.addAmount.bind(this,200)}
+                            >+€200</Button></Grid>
+                    <Grid item xs={4} sm={3}>
+                    <Button className={classes.addDenomination}
+                            variant="outlined"
+                            style={{textTransform: 'none'}}
+                            onClick={this.addAmount.bind(this,500)}
+                            >+€500</Button></Grid>
+                    <Grid item xs={4} sm={3}>
+                    <Button className={classes.addDenomination}
+                            variant="outlined"
+                            style={{textTransform: 'none'}}
+                            onClick={this.addAmount.bind(this,0)}
+                            >clear</Button></Grid>
+                          </Grid>
+                            <br/>
                     <Button className={classes.accountBalance}
-                  style={{textTransform: 'none'}}
-                  onClick={this.setMax.bind(this)}
-                    >{deurBalance? `Balance: ${deurBalance} DEUR` : '-'}</Button>
+                            style={{textTransform: 'none'}}
+                            onClick={this.setMax.bind(this)}
+                            >{deurBalance? `Balance: ${deurBalance} DEUR` : '-'}</Button>
 
 
                     <TextField label="DEUR Amount" placeholder='0' className={classes.input} margin="normal" variant="outlined" value={exitAmount.toString() !== "0" ? exitAmount : ''} type="number" onChange={this.handleInput.bind(this)} InputProps={{ inputProps: { min: 0 },
