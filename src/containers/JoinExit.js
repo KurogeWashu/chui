@@ -101,15 +101,15 @@ class JoinExitContainer extends React.Component {
         // const chaiBalance = store.get('chaiBalance')
         // const chaiBalanceDecimal = store.get('chaiBalanceDecimal')
         const deurBalance = store.get('deurBalance')
-        // const deurBalanceDecimal = store.get('deurBalanceDecimal')
+        const deurBalanceDecimal = store.get('deurBalanceDecimal')
         const joinAmount = store.get('joinAmount')
         const exitAmount = store.get('exitAmount')
         const web3 = store.get('web3')
         const isSignedIn = walletAddress && walletAddress.length
 
         const canJoin = joinAmount && (joinAmount.cmp(daiBalanceDecimal) < 1)
-        // const canExit = exitAmount && (exitAmount.cmp(deurBalanceDecimal) < 1)
-        const canExit = true
+        const canExit = exitAmount && (exitAmount.cmp(deurBalanceDecimal) < 1)
+        // const canExit = true
 
         const joinexitAction = store.get('joinexitAction')
 
@@ -129,15 +129,17 @@ class JoinExitContainer extends React.Component {
 
                   <Box hidden={joinexitAction !== 0}> 
                     <Typography variant='subtitle1' align="center">DAI &#8594; DEUR</Typography><br/>
-        <Button variant="text" className={classes.accountBalance}
-      style={{textTransform: 'none'}}
-      onClick={this.setMax.bind(this)}
-        >{daiBalance ? `Balance: ${daiBalance} DAI` : '-'}</Button>
-        <TextField label="DAI Amount" placeholder='0' className={classes.input} value={joinAmount.toString() !== "0" ? joinAmount : ''} margin="normal" variant="outlined" type="number" onChange={this.handleInput.bind(this)} InputProps={{ inputProps: { min: 0 },
-                                endAdornment: <InputAdornment className={classes.endAdornment} position="end">DAI</InputAdornment>
-                            }}
-      helperText={(isSignedIn && joinAmount) ? "You will receive approximately " + toDeur.bind(this)(web3.utils.toWei(String(joinAmount))) + " DEUR": " "}
-        />
+
+                    <Button variant="text" className={classes.accountBalance}
+                  style={{textTransform: 'none'}}
+                  onClick={this.setMax.bind(this)}
+                    >{daiBalance ? `Balance: ${daiBalance} DAI` : '-'}</Button>
+                    
+                    <TextField label="DAI Amount" placeholder='0' className={classes.input} value={joinAmount.toString() !== "0" ? joinAmount : ''} margin="normal" variant="outlined" type="number" onChange={this.handleInput.bind(this)} InputProps={{ inputProps: { min: 0 },
+                                            endAdornment: <InputAdornment className={classes.endAdornment} position="end">DAI</InputAdornment>
+                                        }}
+                  helperText={(isSignedIn && joinAmount) ? "You will receive approximately " + toDeur.bind(this)(web3.utils.toWei(String(joinAmount))) + " DEUR": " "}
+                    />
                         <Button color='primary'
                             size='large'
                             onClick={() => {
@@ -148,15 +150,18 @@ class JoinExitContainer extends React.Component {
                   </Box>
                   <Box hidden={joinexitAction !== 1}>
                     <Typography variant='subtitle1' align="center">DEUR &#8594; DAI</Typography><br/>
-        <Button className={classes.accountBalance}
-      style={{textTransform: 'none'}}
-      onClick={this.setMax.bind(this)}
-        >{deurBalance? `Balance: ${deurBalance} DEUR` : '-'}</Button>
-        <TextField label="DEUR Amount" placeholder='0' className={classes.input} margin="normal" variant="outlined" value={exitAmount.toString() !== "0" ? exitAmount : ''} type="number" onChange={this.handleInput.bind(this)} InputProps={{ inputProps: { min: 0 },
-                            endAdornment: <InputAdornment className={classes.endAdornment} position="end">DEUR</InputAdornment>
-                        }}
-      helperText={(isSignedIn && exitAmount) ? "You will receive approximately " + toDai.bind(this)(web3.utils.toWei(String(exitAmount))) + " Dai": " "}
-        />
+
+                    <Button className={classes.accountBalance}
+                  style={{textTransform: 'none'}}
+                  onClick={this.setMax.bind(this)}
+                    >{deurBalance? `Balance: ${deurBalance} DEUR` : '-'}</Button>
+
+
+                    <TextField label="DEUR Amount" placeholder='0' className={classes.input} margin="normal" variant="outlined" value={exitAmount.toString() !== "0" ? exitAmount : ''} type="number" onChange={this.handleInput.bind(this)} InputProps={{ inputProps: { min: 0 },
+                                        endAdornment: <InputAdornment className={classes.endAdornment} position="end">DEUR</InputAdornment>
+                                    }}
+                  helperText={(isSignedIn && exitAmount) ? "You will receive approximately " + toDai.bind(this)(web3.utils.toWei(String(exitAmount))) + " Dai": " "}
+                    />
                     <Button color='primary'
                         size='large'
                         onClick={() => {
